@@ -3,17 +3,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private Weapon weapon;
+    
+    
     void Start()
     {
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         HandleMovement();
         HandleRotation();
+        HandleShooting();
     }
     
     private void HandleMovement()
@@ -33,5 +35,13 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(distance.y, distance.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 0f, angle -90);
+    }
+
+    private void HandleShooting()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            weapon.Shoot();
+        }
     }
 }
