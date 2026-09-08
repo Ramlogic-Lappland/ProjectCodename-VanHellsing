@@ -370,11 +370,24 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
     private void UpdateFacingDirection()
     {
-        Vector3 velocity = _agent.velocity;
+        Vector2 velocity = _agent.velocity;
 
         if (velocity.sqrMagnitude > 0.01f)
         {
             _facingDirection = velocity.normalized;
+
+            float angle = Mathf.Atan2
+            (
+                _facingDirection.y,
+                _facingDirection.x
+            ) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler
+            (
+                0f,
+                0f,
+                angle
+            );
         }
     }
 
