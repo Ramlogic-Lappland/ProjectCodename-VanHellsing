@@ -1,9 +1,42 @@
 using System;
 using UnityEngine;
-using UnityEngine.Android;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class BasicEnemyBehaviour : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Transform player;
+    [Header("Vision Layer items will block vision (must add player to it too)")]
+    [SerializeField] private LayerMask visionLayer;
+    
+    [Header("Basic Attributes")]
+    [SerializeField] private float movementSpeed = 2f;
+    [SerializeField] private float attackRange = 1.2f;
+    private Vector2 _facingDirection = Vector2.right;
+    
+    [Header("Detection Attributes")]
+    [SerializeField] private float detectionRange = 8f;
+    [SerializeField] private float detectionAngle = 90f;
+    [SerializeField] private float searchDuration = 3f;
+    
+    [Header("Patrol Attributes")]
+    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private float patrolWaitTime = 2f;
+    private int _currentPatrolIndex;
+    private bool _isWaitingAtPatrolPoint;
+    private float _patrolWaitTimer;
+    
+    [Header("Search Attributes")]
+    [SerializeField] private float searchPointRadius = 2f;
+    [SerializeField] private int searchPointCount = 3;
+    [SerializeField] private float searchArrivalDistance = 0.2f;
+    [SerializeField] private float searchWaitTime = 0.5f;
+    private Vector2 _lastKnownPosition;
+    private Vector2[] _searchPoints;
+    private int _currentSearchIndex;
+    private float _searchTimer; 
+    private float _searchWaitTimer;
     
     private enum EnemyState
     {
@@ -14,27 +47,31 @@ public class BasicEnemyBehaviour : MonoBehaviour
         Attack
     }
     
-    [Header("References")]
-    [SerializeField] private Transform player;
-    [SerializeField] private LayerMask visionLayer;
-    
-    [Header("Attributes")]
-    [SerializeField] private float detectionRange = 8f;
-    [SerializeField] private float detectionAngle = 90f;
-    [SerializeField] private float attackRange = 1.2f;
-    [SerializeField] private float searchDuration = 3f;
-    [SerializeField] private float movementSpeed = 2f;
-
     private Rigidbody2D _rb;
-    private Vector2 _lastKnownPosition;
-    private float _searchTimer;
+    private NavMeshAgent _agent;
     private EnemyState _currentState;
-    private Vector2 facingDirection = Vector2.right;
     
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _agent = GetComponent<NavMeshAgent>();
+
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
+
+        _agent.speed = movementSpeed;
+        _agent.stoppingDistance = searchArrivalDistance;
+
         _currentState = EnemyState.Idle;
+    }
+    
+    private void Start()
+    {
+        if (patrolPoints != null && patrolPoints.Length > 0)
+        {
+            _currentState = EnemyState.Patrol;
+            GoToPatrolPoint();
+        }
     }
 
     private void FixedUpdate()
@@ -61,6 +98,8 @@ public class BasicEnemyBehaviour : MonoBehaviour
                 UpdateAttack();
                 break;
         }
+        
+        UpdateFacingDirection();
     }
 
     private void UpdateIdle()
@@ -72,87 +111,239 @@ public class BasicEnemyBehaviour : MonoBehaviour
         }
     }
 
+    #region PATROL CODE =============================================================================================================================
+
     private void UpdatePatrol()
     {
         if (CanSeePlayer())
         {
-            _lastKnownPosition = player.position;
-            _currentState = EnemyState.Chase;
+            DetectPlayer();
+            return;
+        }
+        
+        if (patrolPoints == null || patrolPoints.Length == 0)       // No patrol points.
+        {
+            return;
+        }
+        
+        if (_isWaitingAtPatrolPoint)
+        {
+            _patrolWaitTimer -= Time.deltaTime;
+
+            if (_patrolWaitTimer <= 0f)
+            {
+                _isWaitingAtPatrolPoint = false;
+                GoToNextPatrolPoint();
+            }
+
+            return;
+        }
+        
+        if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance) // Got to point
+        {
+            _isWaitingAtPatrolPoint = true;
+            _patrolWaitTimer = patrolWaitTime;
+
+            _agent.ResetPath();
+        }
+    }
+    
+    private void GoToPatrolPoint()
+    {
+        if (patrolPoints == null || patrolPoints.Length == 0)
+        {
+            return;
+        }
+        
+        Transform target = patrolPoints[_currentPatrolIndex];
+
+        _agent.isStopped = false;
+        _agent.SetDestination(target.position);
+    }
+
+    private void GoToNextPatrolPoint()
+    {
+        _currentPatrolIndex++;
+
+        if (_currentPatrolIndex >= patrolPoints.Length)
+        {
+            _currentPatrolIndex = 0;
         }
 
-        //TODO: Patrol State
+        GoToPatrolPoint();
     }
+    
+    private void ReturnToPatrol()
+    {
+        _agent.ResetPath();
+
+        _currentState = EnemyState.Patrol;
+
+        _isWaitingAtPatrolPoint = false;
+
+        GoToPatrolPoint();
+    }
+    #endregion PATROL CODE =============================================================================================================================
     
     private void UpdateChase()
     {
-        if (CanSeePlayer()) //Player in sight
+        if (CanSeePlayer())
         {
             _lastKnownPosition = player.position;
 
-            float distance = Vector2.Distance
-            (
+            float distance = Vector2.Distance(
                 transform.position,
                 player.position
             );
 
             if (distance <= attackRange)
             {
+                _agent.ResetPath();
                 _currentState = EnemyState.Attack;
                 return;
             }
 
-            MoveTowards(player.position);
+            _agent.isStopped = false;
+            
+            _agent.SetDestination(player.position);
         }
-        else // Player out of sight
+        else
         {
-            _searchTimer = searchDuration;
-            _currentState = EnemyState.Search;
+            StartSearch();
+        }
+    }
+
+    #region Chase Code =============================================================================================================================
+    private void StartSearch()
+    {
+        _searchTimer = searchDuration;
+        _searchWaitTimer = 0f;
+        _currentSearchIndex = 0;
+
+        GenerateSearchPoints();
+
+        _agent.isStopped = false;
+        
+        _agent.SetDestination(_lastKnownPosition); //goes to last seen point
+
+        _currentState = EnemyState.Search;
+    }
+    
+    private void GenerateSearchPoints()
+    {
+        _searchPoints = new Vector2[searchPointCount];
+
+        for (int i = 0; i < searchPointCount; i++)
+        {
+            Vector2 randomOffset = UnityEngine.Random.insideUnitCircle * searchPointRadius;
+
+            Vector2 candidate =
+                _lastKnownPosition + randomOffset;
+
+            if (NavMesh.SamplePosition(
+                    candidate,
+                    out NavMeshHit hit,
+                    searchPointRadius,
+                    NavMesh.AllAreas))
+            {
+                _searchPoints[i] = hit.position;
+            }
+            else
+            {
+                _searchPoints[i] = _lastKnownPosition;
+            }
         }
     }
     
     private void UpdateSearch()
     {
-        if (CanSeePlayer()) // Player in sight
+        if (CanSeePlayer())
         {
-            _lastKnownPosition = player.position;
-            _currentState = EnemyState.Chase;
+            DetectPlayer();
             return;
         }
 
-        
-        float distance = Vector2.Distance //Move to last Known position
-        (
-            transform.position,
-            _lastKnownPosition
-        );
-
-        if (distance > 0.2f)
-        {
-            MoveTowards(_lastKnownPosition);
-        }
-        else
-        {
-            LookAround();
-        }
-
         _searchTimer -= Time.deltaTime;
-
-        if (_searchTimer <= 0f)
+        
+        if (_searchTimer <= 0f) // searched for max time
         {
-            _currentState = EnemyState.Patrol;
+            ReturnToPatrol();
+            return;
+        }
+        
+        if (_agent.pathPending)
+        {
+            return;
+        }
+        
+        if (_agent.remainingDistance <= _agent.stoppingDistance) // Got to point
+        {
+            _agent.ResetPath();
+
+            _searchWaitTimer -= Time.deltaTime;
+
+            if (_searchWaitTimer > 0f)
+            {
+                LookAround();
+                return;
+            }
+
+            _searchWaitTimer = searchWaitTime;
+
+           
+            if (_currentSearchIndex < _searchPoints.Length) // Move to search point till none left.
+            {
+                Vector2 nextPoint = _searchPoints[_currentSearchIndex];
+
+                _currentSearchIndex++;
+
+                _agent.isStopped = false;
+                _agent.SetDestination(nextPoint);
+            }
+            else
+            {
+                ReturnToPatrol();
+            }
         }
     }
     
+    private void LookAround()
+    {
+        float angle =
+            Mathf.Sin(Time.time * 2f) * 60f;
+
+        _facingDirection =
+            Quaternion.Euler(0f, 0f, angle) *
+            Vector2.right;
+    }
+    #endregion =======================================================================================================================================
+
+    #region Player Detection code ==========================================================================================================
+    private void DetectPlayer()
+    {
+        _lastKnownPosition = player.position;
+
+        _currentState = EnemyState.Chase;
+    }
+
+
     private bool CanSeePlayer()
     {
-        Vector2 toPlayer = player.position - (Vector3)transform.position;
-        
-        if (toPlayer.sqrMagnitude > detectionRange * detectionRange) // Distance check
+        if (player == null)
+        {
+            return false;
+        }
+
+        Vector2 toPlayer =
+            player.position - transform.position;
+
+      
+        if (toPlayer.sqrMagnitude > detectionRange * detectionRange)
         {
             return false;
         }
         
-        float angle = Vector2.Angle(facingDirection, toPlayer); // Cone check
+        float angle = Vector2.Angle(_facingDirection, toPlayer); // Cone check.
 
         if (angle > detectionAngle / 2f)
         {
@@ -160,7 +351,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
         }
 
         
-        RaycastHit2D hit = Physics2D.Raycast
+        RaycastHit2D hit = Physics2D.Raycast // Line of sight.
         (
             transform.position,
             toPlayer.normalized,
@@ -168,48 +359,35 @@ public class BasicEnemyBehaviour : MonoBehaviour
             visionLayer
         );
 
-        
-        if (hit.collider == null) // Nothing was hit
+        if (hit.collider == null)
         {
             return false;
         }
-        
-        return hit.collider.CompareTag("Player"); // The first hit is Player
+
+        return hit.collider.CompareTag("Player");
     }
-    
-    private void MoveTowards(Vector2 target)
+    #endregion =============================================================================================================================
+
+    private void UpdateFacingDirection()
     {
-        Vector2 direction =
-            (target - _rb.position).normalized;
+        Vector3 velocity = _agent.velocity;
 
-        _rb.MovePosition
-        (
-            _rb.position +
-            direction * movementSpeed * Time.fixedDeltaTime
-        );
-
-        if (direction.sqrMagnitude > 0.01f)
+        if (velocity.sqrMagnitude > 0.01f)
         {
-            facingDirection = direction;
+            _facingDirection = velocity.normalized;
         }
     }
-    
-    private void LookAround()
-    {
-      //TODO: Logic about searching around
-    }
+
     
     private void UpdateAttack()
     {
         if (!CanSeePlayer())
         {
-            _currentState = EnemyState.Search;
-            _searchTimer = searchDuration;
+            StartSearch();
             return;
         }
 
-        float distance = Vector2.Distance
-        (
+        float distance = Vector2.Distance(
             transform.position,
             player.position
         );
@@ -220,52 +398,95 @@ public class BasicEnemyBehaviour : MonoBehaviour
             return;
         }
 
+        _agent.ResetPath();
+
         //TODO: AttackLogic
     }
-    
+
+    #region GIZMOS =========================================================================================
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Color gizmoColor = Color.green;
 
         if (_currentState == EnemyState.Search)
         {
-            Gizmos.color = Color.yellow;
+            gizmoColor = Color.yellow;
         }
-        
+
         if (Application.isPlaying && CanSeePlayer())
         {
-            Gizmos.color = Color.red;
+            gizmoColor = Color.red;
         }
-        
+
+        Gizmos.color = gizmoColor;
+
         Gizmos.DrawWireSphere(
             transform.position,
             detectionRange
         );
-        
+
         Vector3 leftBoundary =
-            Quaternion.Euler(0f, 0f, detectionAngle / 2f) *
-            facingDirection;
+            Quaternion.Euler
+            (
+                0f,
+                0f,
+                detectionAngle / 2f
+            ) * _facingDirection;
 
-        Vector3 rightBoundary =
-            Quaternion.Euler(0f, 0f, -detectionAngle / 2f) *
-            facingDirection;
+        Vector3 rightBoundary = Quaternion.Euler
+        (
+            0f,
+            0f,
+            -detectionAngle / 2f
+        ) * _facingDirection;
 
-        Gizmos.DrawLine(
+        Gizmos.DrawLine
+        (
             transform.position,
-            transform.position + leftBoundary * detectionRange
+            transform.position +
+            leftBoundary * detectionRange
         );
 
-        Gizmos.DrawLine(
+        Gizmos.DrawLine
+        (
             transform.position,
-            transform.position + rightBoundary * detectionRange
+            transform.position +
+            rightBoundary * detectionRange
         );
         
-        if (Application.isPlaying && player != null)
+        if (Application.isPlaying && _currentState == EnemyState.Search) // Last known position.
         {
-            Gizmos.DrawLine(
+            Gizmos.color = Color.yellow;
+
+            Gizmos.DrawWireSphere
+            (
+                _lastKnownPosition,
+                0.25f
+            );
+
+            Gizmos.DrawLine
+            (
                 transform.position,
-                player.position
+                _lastKnownPosition
             );
         }
+        
+        if (patrolPoints != null) // Patrol points.
+        {
+            Gizmos.color = Color.cyan;
+
+            foreach (Transform point in patrolPoints)
+            {
+                if (point != null)
+                {
+                    Gizmos.DrawWireSphere(
+                        point.position,
+                        0.15f
+                    );
+                }
+            }
+        }
     }
+    #endregion GIZMOS ======================================================================================
+    
 }
