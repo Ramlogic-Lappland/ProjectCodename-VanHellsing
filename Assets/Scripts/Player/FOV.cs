@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class FOV : MonoBehaviour
 {
-    [Header("Configuraci�n de Visi�n")] 
-    
     private float _viewRadius;
 
     [SerializeField] private float maxRadius = 5f;
@@ -15,14 +13,14 @@ public class FOV : MonoBehaviour
     [SerializeField] private int rayCount = 360;
     [SerializeField] private LayerMask obstacleMask;
 
-    private Mesh viewMesh;
+    private Mesh _viewMesh;
 
     void Start()
     {
-        viewMesh = new Mesh();
-        viewMesh.name = "FOV Mesh";
+        _viewMesh = new Mesh();
+        _viewMesh.name = "FOV Mesh";
         _viewRadius = maxRadius;
-        GetComponent<MeshFilter>().mesh = viewMesh;
+        GetComponent<MeshFilter>().mesh = _viewMesh;
     }
 
     void LateUpdate()
@@ -62,7 +60,7 @@ public class FOV : MonoBehaviour
         Vector3[] vertices = new Vector3[vertexCount];
         int[] triangles = new int[(viewPoints.Count - 1) * 3];
 
-        vertices[0] = Vector3.zero; // El origen es la posici�n del personaje
+        vertices[0] = Vector3.zero; // El origen es la posicion del personaje
         for (int i = 0; i < viewPoints.Count; i++)
         {
             vertices[i + 1] = viewPoints[i];
@@ -75,10 +73,10 @@ public class FOV : MonoBehaviour
             }
         }
 
-        viewMesh.Clear();
-        viewMesh.vertices = vertices;
-        viewMesh.triangles = triangles;
-        viewMesh.RecalculateNormals();
+        _viewMesh.Clear();
+        _viewMesh.vertices = vertices;
+        _viewMesh.triangles = triangles;
+        _viewMesh.RecalculateNormals();
     }
 
 
