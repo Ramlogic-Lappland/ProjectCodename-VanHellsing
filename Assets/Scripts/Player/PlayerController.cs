@@ -31,9 +31,8 @@ public class PlayerController : MonoBehaviour
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
         ).normalized;
-
-        Vector2 targetPosition =_rb.position + movement * speed * Time.fixedDeltaTime;
-
+        
+        Vector2 targetPosition = _rb.position + movement * (speed * Time.fixedDeltaTime) ;
         _rb.MovePosition(targetPosition);
     }
     
