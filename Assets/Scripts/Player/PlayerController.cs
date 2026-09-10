@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -5,32 +6,42 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private Weapon weapon;
     
-    
-    void Start()
+    private Rigidbody2D _rb;
+
+    private void Awake()
     {
-        
+        _rb = GetComponent<Rigidbody2D>();
     }
     
-    void Update()
+    private void Update()
     {
-        HandleMovement();
         HandleRotation();
         HandleShooting();
     }
-    
+
+    private void FixedUpdate()
+    {
+        HandleMovement();
+    }
+
     private void HandleMovement()
     {
-        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        transform.position += (Vector3)(speed * movement * Time.deltaTime);
+        Vector2 movement = new Vector2
+        (
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical")
+        ).normalized;
+
+        Vector2 targetPosition =_rb.position + movement * speed * Time.fixedDeltaTime;
+
+        _rb.MovePosition(targetPosition);
     }
     
     private void HandleRotation()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 distance;
-        distance.x = mousePosition.x - transform.position.x;
-        distance.y = mousePosition.y - transform.position.y;
+        Vector2 distance = mousePosition - transform.position;
 
         float angle = Mathf.Atan2(distance.y, distance.x) * Mathf.Rad2Deg;
 
