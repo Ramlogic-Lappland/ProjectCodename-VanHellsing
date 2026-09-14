@@ -12,11 +12,15 @@ public class FOV : MonoBehaviour
 
     [SerializeField] private int rayCount = 360;
     [SerializeField] private LayerMask obstacleMask;
+    
+    private PlayerHealth  _playerHealth;
 
     private Mesh _viewMesh;
 
     void Start()
     {
+        _playerHealth = GetComponentInParent<PlayerHealth>();
+        _playerHealth.OnHealthChanged += CalculateFOVRadius;
         _viewMesh = new Mesh();
         _viewMesh.name = "FOV Mesh";
         _viewRadius = maxRadius;
@@ -54,6 +58,7 @@ public class FOV : MonoBehaviour
                 // Si no choca, llega al radio maximo
                 viewPoints.Add(transform.InverseTransformPoint(transform.position + dir * _viewRadius));
             }
+            
         }
 
         int vertexCount = viewPoints.Count + 1;
@@ -79,6 +84,10 @@ public class FOV : MonoBehaviour
         _viewMesh.RecalculateNormals();
     }
 
+    private void CalculateFOVRadius(float currentHealth)
+    {
+        _viewRadius = Mathf.Max(0f,maxRadius *  currentHealth / _playerHealth.GetMaxHealth());
+    }
 
     /*public void SetRadius(float maxHP, float HP)
     {
