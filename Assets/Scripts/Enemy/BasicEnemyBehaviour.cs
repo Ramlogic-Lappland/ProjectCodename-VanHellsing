@@ -9,11 +9,15 @@ public class BasicEnemyBehaviour : MonoBehaviour
     [SerializeField] private Transform player;
     [Header("Vision Layer items will block vision (must add player to it too)")]
     [SerializeField] private LayerMask visionLayer;
+    [SerializeField] private HealtBarBehaviour healtBar;
     
     [Header("Basic Attributes")]
     [SerializeField] private float movementSpeed = 2f;
     [SerializeField] private float attackRange = 1.2f;
+    [SerializeField] private float maxHitPoints = 10f;
+    [SerializeField] private float hitPoints = 0f;
     private Vector2 _facingDirection = Vector2.right;
+    
     
     [Header("Detection Attributes")]
     [SerializeField] private float detectionRange = 8f;
@@ -37,6 +41,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     private int _currentSearchIndex;
     private float _searchTimer; 
     private float _searchWaitTimer;
+    private float _dmg = 1f; // ONLY FOR TEST
     
     private enum EnemyState
     {
@@ -67,6 +72,9 @@ public class BasicEnemyBehaviour : MonoBehaviour
     
     private void Start()
     {
+        hitPoints = maxHitPoints;
+        healtBar.SetHealth(hitPoints, maxHitPoints);
+        
         if (patrolPoints != null && patrolPoints.Length > 0)
         {
             _currentState = EnemyState.Patrol;
@@ -74,6 +82,14 @@ public class BasicEnemyBehaviour : MonoBehaviour
         }
     }
 
+    private void Update() // ONLY FOR TEST
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            takeDamage(_dmg);
+        }
+    }
+    
     private void FixedUpdate()
     {
         switch (_currentState)
@@ -414,6 +430,16 @@ public class BasicEnemyBehaviour : MonoBehaviour
         _agent.ResetPath();
 
         //TODO: AttackLogic
+    }
+
+    public void takeDamage(float damage)
+    {
+        hitPoints -= damage;
+        healtBar.SetHealth(hitPoints, maxHitPoints);
+        if (hitPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     #region GIZMOS =========================================================================================
