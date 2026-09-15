@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+
 public class BasicEnemyBehaviour : MonoBehaviour
 {
     [Header("References")]
@@ -43,6 +44,10 @@ public class BasicEnemyBehaviour : MonoBehaviour
     private float _searchWaitTimer;
     private float _dmg = 1f; // ONLY FOR TEST
     
+    [Header("Damage Attributes")]
+    [SerializeField] private MonoBehaviour attackBehaviour;
+    private IEnemyAttack _attack;
+    
     private enum EnemyState
     {
         Idle,
@@ -55,7 +60,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     private Rigidbody2D _rb;
     private NavMeshAgent _agent;
     private EnemyState _currentState;
-    
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -69,8 +74,15 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         _currentState = EnemyState.Idle;
         hitPoints = maxHitPoints;
+
+        _attack = attackBehaviour as IEnemyAttack;
+
+        if (_attack == null)
+        {
+            Debug.LogError($"{gameObject.name} has no valid IEnemyAttack assigned.");
+        }
     }
-    
+
     private void Start()
     {
         healtBar.SetHealth(hitPoints, maxHitPoints);
@@ -429,7 +441,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         _agent.ResetPath();
 
-        //TODO: AttackLogic
+        _attack?.Attack();
     }
 
     public void takeDamage(float damage)
