@@ -68,11 +68,11 @@ public class BasicEnemyBehaviour : MonoBehaviour
         _agent.stoppingDistance = searchArrivalDistance;
 
         _currentState = EnemyState.Idle;
+        hitPoints = maxHitPoints;
     }
     
     private void Start()
     {
-        hitPoints = maxHitPoints;
         healtBar.SetHealth(hitPoints, maxHitPoints);
         
         if (patrolPoints != null && patrolPoints.Length > 0)
