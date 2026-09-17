@@ -1,44 +1,32 @@
-using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 public class FOV : MonoBehaviour
 {
-    private float _viewRadius;
-
-    [SerializeField] private float maxRadius = 5f;
-
+    [SerializeField] private float viewRadius;
     [SerializeField] private int rayCount = 360;
     [SerializeField] private LayerMask obstacleMask;
+    //[SerializeField] private MeshFilter meshFilter;
     
-    private PlayerHealth  _playerHealth;
-
     private Mesh _viewMesh;
-
-    void Start()
+    
+    protected virtual void Start()
     {
-        _playerHealth = GetComponentInParent<PlayerHealth>();
-        _playerHealth.OnHealthChanged += CalculateFOVRadius;
         _viewMesh = new Mesh();
         _viewMesh.name = "FOV Mesh";
-        _viewRadius = maxRadius;
         GetComponent<MeshFilter>().mesh = _viewMesh;
     }
-
-    void LateUpdate()
-    {
-        DrawFieldOfView();
-    }
-
-    void DrawFieldOfView()
+    
+    
+    protected void CreatFieldOfView()
     {
 
         List<Vector3> viewPoints = new List<Vector3>();
         float angleStep = 360f / rayCount;
 
-        // Lanzar rayos en abanico
+        // Raycast in fan
         for (int i = 0; i <= rayCount; i++)
         {
 
@@ -46,17 +34,17 @@ public class FOV : MonoBehaviour
             float rad = angle * Mathf.Deg2Rad;
             Vector3 dir = new Vector3(Mathf.Sin(rad), Mathf.Cos(rad), 0f);
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, _viewRadius, obstacleMask);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask);
 
             if (hit.collider != null)
             {
-                // Si choca con un obstaculo, el vertice se coloca en el punto de impacto (convertido a espacio local)
+                //If it collides the vertex is set at the impact point
                 viewPoints.Add(transform.InverseTransformPoint(hit.point));
             }
             else
             {
-                // Si no choca, llega al radio maximo
-                viewPoints.Add(transform.InverseTransformPoint(transform.position + dir * _viewRadius));
+                //If it doesn't collide its set at max range
+                viewPoints.Add(transform.InverseTransformPoint(transform.position + dir * viewRadius));
             }
             
         }
@@ -65,7 +53,7 @@ public class FOV : MonoBehaviour
         Vector3[] vertices = new Vector3[vertexCount];
         int[] triangles = new int[(viewPoints.Count - 1) * 3];
 
-        vertices[0] = Vector3.zero; // El origen es la posicion del personaje
+        vertices[0] = Vector3.zero;
         for (int i = 0; i < viewPoints.Count; i++)
         {
             vertices[i + 1] = viewPoints[i];
@@ -84,28 +72,28 @@ public class FOV : MonoBehaviour
         _viewMesh.RecalculateNormals();
     }
 
-    private void CalculateFOVRadius(float currentHealth)
+    protected void SetViewRadius(float radius)
     {
-        _viewRadius = Mathf.Max(0f,maxRadius *  currentHealth / _playerHealth.GetMaxHealth());
+        viewRadius = radius;
     }
-
-    /*public void SetRadius(float maxHP, float HP)
+    
+/*public void SetRadius(float maxHP, float HP)
     {
         _viewRadius = ((float)HP / maxHP) * maxRadius;
     }*/
     
 /*
  Este codigo comentado es para un fov que no sea de 360
- 
+
  [SerializeField] private float viewAngle = 90f;
- 
+
  Remplazar en angleStep 360 por viewAngle
- 
- angle por este angle 
+
+ angle por este angle
 
  /*float angle = transform.eulerAngles.z - viewAngle / 2 + stepAngleSize * i;
             Vector3 dir = DirFromAngle(angle);* /
-            
+
 igualar dir a esta funcion
 Vector3 DirFromAngle(float angleInDegrees)
     {
@@ -113,6 +101,6 @@ Vector3 DirFromAngle(float angleInDegrees)
         float rad = angleInDegrees * Mathf.Deg2Rad;
         return new Vector3(Mathf.Sin(rad), Mathf.Cos(rad), 0f);
     }
-*/
-
+*/    
+    
 }
