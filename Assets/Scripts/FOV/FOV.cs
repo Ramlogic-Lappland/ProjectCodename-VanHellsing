@@ -1,22 +1,24 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Light2D))]
 public class FOV : MonoBehaviour
 {
     [SerializeField] private float viewRadius;
     [SerializeField] private int rayCount = 360;
     [SerializeField] private LayerMask obstacleMask;
-    //[SerializeField] private MeshFilter meshFilter;
-    
     private Mesh _viewMesh;
+    private Light2D _viewLight;
     
     protected virtual void Start()
     {
         _viewMesh = new Mesh();
         _viewMesh.name = "FOV Mesh";
         GetComponent<MeshFilter>().mesh = _viewMesh;
+        _viewLight = GetComponent<Light2D>();
     }
     
     
@@ -70,6 +72,7 @@ public class FOV : MonoBehaviour
         _viewMesh.vertices = vertices;
         _viewMesh.triangles = triangles;
         _viewMesh.RecalculateNormals();
+        _viewLight.pointLightOuterRadius =  viewRadius;
     }
 
     protected void SetViewRadius(float radius)
