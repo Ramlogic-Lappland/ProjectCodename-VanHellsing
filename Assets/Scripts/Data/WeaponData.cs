@@ -9,12 +9,15 @@ public enum FireType
 public class WeaponData : ScriptableObject
 {
     [SerializeField] private float damage;
-    [SerializeField] private float fireRate; //Disparos por minuto
+    [SerializeField] private float fireRate; //Bullets x min
     [SerializeField] private float range;
     
     [SerializeField] private Bullet projectilePrefab;
     [SerializeField] private float projectileSpeed;
     [SerializeField] private FireType fireType;
+    
+    [SerializeField] private float magazineSize;
+    [SerializeField] private float reloadTime;
 
     public Bullet GetProjectile()
     {
@@ -39,5 +42,15 @@ public class WeaponData : ScriptableObject
     public FireType GetFireType()
     {
         return fireType;
+    }
+
+    public float GetReloadTime()
+    {
+        return reloadTime;
+    }
+    
+    public float GetMagazineSize()
+    {
+        return magazineSize;
     }
 }

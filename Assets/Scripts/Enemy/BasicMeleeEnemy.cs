@@ -8,7 +8,8 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemyAttack
     [SerializeField] private float attackCooldown = 1f;
 
     private float _cooldownTimer;
-    
+    private PlayerHealth _playerHealth;
+
     public float AttackRange => attackRange;
 
     private void Update()
@@ -18,7 +19,7 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemyAttack
             _cooldownTimer -= Time.deltaTime;
         }
     }
-    
+
     public bool CanStartAttack(Transform player)
     {
         if (player == null)
@@ -26,25 +27,41 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemyAttack
             return false;
         }
 
-        if (_cooldownTimer > 0f)
-        {
-            return false;
-        }
-
-        float distance = Vector2.Distance(
-            transform.position,
-            player.position
-        );
+        float distance = Vector2.Distance(transform.position, player.position);
 
         return distance <= AttackRange;
     }
-    
-    public void Attack()
+
+    public void Attack(Transform player)
     {
+        if (player == null)
+        {
+            return;
+        }
+
+        if (_cooldownTimer > 0f)
+        {
+            return;
+        }
+
+        // Find PlayerHealth once.
+        if (_playerHealth == null)
+        {
+            _playerHealth =
+                player.GetComponentInParent<PlayerHealth>();
+        }
+
+        if (_playerHealth == null)
+        {
+            Debug.LogError("BasicMeleeEnemy could not find PlayerHealth on the player.");
+
+            return;
+        }
+
         _cooldownTimer = attackCooldown;
 
-        Debug.Log("Melee attack!");
+        Debug.Log($"Melee attack! Damage: {damage}");
 
-        // TODO:Deal damage to player
+        _playerHealth.TakeDamage(damage);
     }
 }
