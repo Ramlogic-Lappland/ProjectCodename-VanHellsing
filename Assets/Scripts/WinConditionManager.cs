@@ -4,6 +4,7 @@ using UnityEngine;
 public class WinConditionManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] private TextMeshProUGUI stageClearText;
 
     private int _remainingEnemies;
     private bool _gameEnded;
@@ -26,14 +27,9 @@ public class WinConditionManager : MonoBehaviour
 
     private void UpdateEnemyCounter()
     {
-        if (_gameEnded)
-        {
-            enemiesRemainingText.text = "Stage Cleared";
-        }
-        else
-        {
+        
             enemiesRemainingText.text = $"Enemies Remaining: {_remainingEnemies}";
-        }
+            
     }
 
     private void CheckWinCondition()
@@ -47,6 +43,7 @@ public class WinConditionManager : MonoBehaviour
     private void WinGame()
     {
         Debug.Log("YOU WIN!");
+        stageClearText.gameObject.SetActive(true);
 
         WindowBehaviour[] windows = FindObjectsByType<WindowBehaviour>(FindObjectsSortMode.None);
 
@@ -64,7 +61,7 @@ public class WinConditionManager : MonoBehaviour
             return;
 
         _gameEnded = true;
-        UpdateEnemyCounter();
+        
         Debug.Log("YOU LOSE!");
 
         // TODO: Show lose screen, Disable player, Stop game.
