@@ -43,6 +43,16 @@ public class WinConditionManager : MonoBehaviour
     private void WinGame()
     {
         Debug.Log("YOU WIN!");
+
+        WindowBehaviour[] windows =
+            FindObjectsByType<WindowBehaviour>(
+                FindObjectsSortMode.None
+            );
+
+        foreach (WindowBehaviour window in windows)
+        {
+            window.ClearWindow();
+        }
         
         // TODO: Show win screen, pause gameplay
     }
