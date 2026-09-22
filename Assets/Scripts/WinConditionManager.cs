@@ -6,7 +6,8 @@ public class WinConditionManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
 
     private int _remainingEnemies;
-
+    private bool _gameEnded;
+    
     private void Start()
     {
         _remainingEnemies =
@@ -54,6 +55,18 @@ public class WinConditionManager : MonoBehaviour
             window.ClearWindow();
         }
         
-        // TODO: Show win screen, pause gameplay
+        // TODO: Show win screen, Disable player, Pause gameplay
+    }
+    
+    public void PlayerDefeated()
+    {
+        if (_gameEnded)
+            return;
+
+        _gameEnded = true;
+
+        Debug.Log("YOU LOSE!");
+
+        // TODO: Show lose screen, Disable player, Stop game.
     }
 }
