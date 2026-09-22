@@ -14,7 +14,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     
     [Header("Basic Attributes")]
     [SerializeField] private float movementSpeed = 2f;
-    [SerializeField] private float attackRange = 1.2f;
+    //[SerializeField] private float attackRange = 1.2f;
     [SerializeField] private float maxHitPoints = 10f;
     [SerializeField] private float hitPoints = 0f;
     private Vector2 _facingDirection = Vector2.right;
@@ -215,30 +215,24 @@ public class BasicEnemyBehaviour : MonoBehaviour
     
     private void UpdateChase()
     {
-        if (CanSeePlayer())
-        {
-            _lastKnownPosition = player.position;
-
-            float distance = Vector2.Distance(
-                transform.position,
-                player.position
-            );
-
-            if (distance <= attackRange)
-            {
-                _agent.ResetPath();
-                _currentState = EnemyState.Attack;
-                return;
-            }
-
-            _agent.isStopped = false;
-            
-            _agent.SetDestination(player.position);
-        }
-        else
+        if (!CanSeePlayer())
         {
             StartSearch();
+            return;
         }
+
+        _lastKnownPosition = player.position;
+
+        if (_attack != null &&
+            _attack.CanStartAttack(player))
+        {
+            _agent.ResetPath();
+            _currentState = EnemyState.Attack;
+            return;
+        }
+
+        _agent.isStopped = false;
+        _agent.SetDestination(player.position);
     }
 
     #region Chase Code =============================================================================================================================
@@ -428,12 +422,13 @@ public class BasicEnemyBehaviour : MonoBehaviour
             return;
         }
 
-        float distance = Vector2.Distance(
-            transform.position,
-            player.position
-        );
+        if (_attack == null)
+        {
+            _currentState = EnemyState.Chase;
+            return;
+        }
 
-        if (distance > attackRange)
+        if (!_attack.CanStartAttack(player))
         {
             _currentState = EnemyState.Chase;
             return;
@@ -441,7 +436,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         _agent.ResetPath();
 
-        _attack?.Attack();
+        _attack.Attack(player);
     }
 
     public void TakeDamage(float damage)

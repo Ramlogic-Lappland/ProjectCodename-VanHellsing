@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.LogWarning("Player HP is: " + _health);
         if (_isDead)
         {
             return;

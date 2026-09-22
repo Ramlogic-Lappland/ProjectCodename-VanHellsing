@@ -3,9 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
+    [Header("Bullet")]
     [SerializeField] private float lifetime = 3f;
-    //[SerializeField] private LayerMask destroyOnHitLayers;
-    
+    [SerializeField] private float damage = 1f;
+
     private Rigidbody2D _rb;
     private float _speed;
 
@@ -36,6 +37,14 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-            Destroy(gameObject);
+        BasicEnemyBehaviour enemy =
+            collision.collider.GetComponentInParent<BasicEnemyBehaviour>();
+
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
+
+        Destroy(gameObject);
     }
 }
