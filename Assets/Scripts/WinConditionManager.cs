@@ -10,10 +10,7 @@ public class WinConditionManager : MonoBehaviour
     
     private void Start()
     {
-        _remainingEnemies =
-            FindObjectsByType<BasicEnemyBehaviour>(
-                FindObjectsSortMode.None
-            ).Length;
+        _remainingEnemies = FindObjectsByType<BasicEnemyBehaviour>(FindObjectsSortMode.None).Length;
 
         UpdateEnemyCounter();
         CheckWinCondition();
@@ -29,8 +26,14 @@ public class WinConditionManager : MonoBehaviour
 
     private void UpdateEnemyCounter()
     {
-        enemiesRemainingText.text =
-            $"Enemies Remaining: {_remainingEnemies}";
+        if (_gameEnded)
+        {
+            enemiesRemainingText.text = "Stage Cleared";
+        }
+        else
+        {
+            enemiesRemainingText.text = $"Enemies Remaining: {_remainingEnemies}";
+        }
     }
 
     private void CheckWinCondition()
@@ -45,10 +48,7 @@ public class WinConditionManager : MonoBehaviour
     {
         Debug.Log("YOU WIN!");
 
-        WindowBehaviour[] windows =
-            FindObjectsByType<WindowBehaviour>(
-                FindObjectsSortMode.None
-            );
+        WindowBehaviour[] windows = FindObjectsByType<WindowBehaviour>(FindObjectsSortMode.None);
 
         foreach (WindowBehaviour window in windows)
         {
@@ -64,7 +64,7 @@ public class WinConditionManager : MonoBehaviour
             return;
 
         _gameEnded = true;
-
+        UpdateEnemyCounter();
         Debug.Log("YOU LOSE!");
 
         // TODO: Show lose screen, Disable player, Stop game.
