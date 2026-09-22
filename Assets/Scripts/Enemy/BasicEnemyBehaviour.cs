@@ -98,7 +98,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            takeDamage(_dmg);
+            TakeDamage(_dmg);
         }
     }
     
@@ -444,12 +444,22 @@ public class BasicEnemyBehaviour : MonoBehaviour
         _attack?.Attack();
     }
 
-    public void takeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         hitPoints -= damage;
+
         healtBar.SetHealth(hitPoints, maxHitPoints);
+
         if (hitPoints <= 0)
         {
+            WinConditionManager winManager =
+                FindFirstObjectByType<WinConditionManager>();
+
+            if (winManager != null)
+            {
+                winManager.EnemyDefeated();
+            }
+
             Destroy(gameObject);
         }
     }
