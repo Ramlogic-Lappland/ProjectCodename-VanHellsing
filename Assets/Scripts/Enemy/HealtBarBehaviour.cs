@@ -28,9 +28,8 @@ public class HealtBarBehaviour : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        slider.transform.position =
-            Camera.main.WorldToScreenPoint(transform.parent.position + offSet);
+        slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offSet);
     }
 }
