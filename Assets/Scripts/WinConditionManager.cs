@@ -1,18 +1,22 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class WinConditionManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
     [SerializeField] private TextMeshProUGUI stageClearText;
-
+    [SerializeField] private Light2D globalLight; 
     private int _remainingEnemies;
     private bool _gameEnded;
     
     private void Start()
     {
         _remainingEnemies = FindObjectsByType<BasicEnemyBehaviour>(FindObjectsSortMode.None).Length;
-
+        if (globalLight == null)
+        {
+            globalLight = GetComponent<Light2D>();
+        }
         UpdateEnemyCounter();
         CheckWinCondition();
     }
@@ -46,13 +50,13 @@ public class WinConditionManager : MonoBehaviour
         stageClearText.gameObject.SetActive(true);
 
         WindowBehaviour[] windows = FindObjectsByType<WindowBehaviour>(FindObjectsSortMode.None);
-
+        globalLight.intensity = 0.07f;
         foreach (WindowBehaviour window in windows)
         {
             window.ClearWindow();
         }
         
-        // TODO: Show win screen, Disable player, Pause gameplay
+        // TODO: Show win screen
     }
     
     public void PlayerDefeated()
