@@ -1,14 +1,18 @@
 using UnityEngine;
 
-public class BasicMeleeEnemy : MonoBehaviour, IEnemyAttack
+public class BasicMeleeEnemyWithKnockBack : MonoBehaviour, IEnemyAttack
 {
     [Header("Melee")]
     [SerializeField] private float attackRange = 1.2f;
     [SerializeField] private float damage = 1f;
     [SerializeField] private float attackCooldown = 1f;
 
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForce = 5f;
+
     private float _cooldownTimer;
     private PlayerHealth _playerHealth;
+    private Rigidbody2D _playerRb;
 
     public float AttackRange => attackRange;
 
@@ -27,7 +31,10 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemyAttack
             return false;
         }
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = Vector2.Distance(
+            transform.position,
+            player.position
+        );
 
         return distance <= AttackRange;
     }
@@ -44,24 +51,38 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemyAttack
             return;
         }
 
-        // Find PlayerHealth once.
+        // Cache PlayerHealth and Rigidbody2D.
         if (_playerHealth == null)
         {
-            _playerHealth =
-                player.GetComponentInParent<PlayerHealth>();
+            _playerHealth = player.GetComponent<PlayerHealth>();
+        }
+
+        if (_playerRb == null)
+        {
+            _playerRb = player.GetComponent<Rigidbody2D>();
         }
 
         if (_playerHealth == null)
         {
-            Debug.LogError("BasicMeleeEnemy could not find PlayerHealth on the player.");
+            Debug.LogWarning("Player does not have PlayerHealth.");
+            return;
+        }
 
+        if (_playerRb == null)
+        {
+            Debug.LogWarning("Player does not have Rigidbody2D.");
             return;
         }
 
         _cooldownTimer = attackCooldown;
 
-        Debug.Log($"Melee attack! Damage: {damage}");
-
+        Debug.Log("Melee attack!");
+        
         _playerHealth.TakeDamage(damage);
+
+        // Push player away from enemy.
+        Vector2 knockbackDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
+
+        _playerRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
     }
 }

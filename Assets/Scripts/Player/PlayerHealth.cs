@@ -2,22 +2,25 @@ using UnityEngine;
 using System;
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth =  100f;
+    [SerializeField] private float maxHealth = 100f;
+
     public event Action<float> OnHealthChanged;
-    
+
     private float _health;
-    
+    private bool _isDead;
+
     private void Start()
     {
         _health = maxHealth;
+        OnHealthChanged?.Invoke(_health);
     }
 
     private void Update()
     {
-        //Solo para tes es esto
+        // Only For Test
         if (Input.GetKeyDown(KeyCode.Q))
         {
-           TakeDamage(10); 
+            TakeDamage(10f);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -25,22 +28,65 @@ public class PlayerHealth : MonoBehaviour
             Heal(10f);
         }
     }
-    
-    private void TakeDamage(float damage)
+
+    public void TakeDamage(float damage)
     {
+        Debug.LogWarning("Player HP is: " + _health);
+        if (_isDead)
+        {
+            return;
+        }
+
         _health = Mathf.Max(0f, _health - damage);
+
+        OnHealthChanged?.Invoke(_health);
+
+        if (_health <= 0f)
+        {
+            Die();
+        }
+    }
+
+    public void Heal(float heal)
+    {
+        if (_isDead)
+        {
+            return;
+        }
+
+        _health = Mathf.Min(_health + heal, maxHealth);
+
         OnHealthChanged?.Invoke(_health);
     }
 
-    private void Heal(float heal)
+    private void Die()
     {
-        _health = Mathf.Min(_health + heal, maxHealth);
-        OnHealthChanged?.Invoke(_health);
+        if (_isDead)
+        {
+            return;
+        }
+
+        _isDead = true;
+
+        WinConditionManager manager = FindFirstObjectByType<WinConditionManager>();
+
+        if (manager != null)
+        {
+            manager.PlayerDefeated();
+        }
+
+        Debug.Log("Player died!");
+
+        // TODO:Disable movement, Play death animation, Show lose screen.
     }
-    
+
     public float GetMaxHealth()
     {
         return maxHealth;
     }
-    
+
+    public float GetCurrentHealth()
+    {
+        return _health;
+    }
 }
