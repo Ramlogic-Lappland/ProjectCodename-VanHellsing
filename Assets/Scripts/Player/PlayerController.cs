@@ -6,15 +6,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private Weapon weapon;
     
+    [SerializeField] private UIPause uiPause;
+    private bool _gamePasued;
+    
     private Rigidbody2D _rb;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _gamePasued = false;
+        uiPause.GameTogglePouse += toggleFreezeInput;
     }
     
     private void Update()
     {
+        if (_gamePasued)
+            return;
+        
         HandleRotation();
         HandleShooting();
     }
@@ -22,6 +30,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         HandleMovement();
+    }
+
+    private void OnDisable()
+    {
+        uiPause.GameTogglePouse -= toggleFreezeInput;
     }
 
     private void HandleMovement()
@@ -53,5 +66,10 @@ public class PlayerController : MonoBehaviour
         {
             weapon.Shoot();
         }
+    }
+
+    private void toggleFreezeInput()
+    {
+        _gamePasued = !_gamePasued;  
     }
 }

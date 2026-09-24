@@ -1,6 +1,9 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
+
 public class UIPause : MonoBehaviour
 {
     [SerializeField] private Button buttonResume;
@@ -13,7 +16,8 @@ public class UIPause : MonoBehaviour
     //[SerializeField] private CanvasGroup panelSettings;
 
     private bool _isPause = false;
-    
+
+    public event Action GameTogglePouse;
 
     private void Awake()
     {
@@ -36,7 +40,7 @@ public class UIPause : MonoBehaviour
 
     private void OnDestroy()
     {
-        //buttonResume.onClick.RemoveAllListeners();
+        buttonResume.onClick.RemoveAllListeners();
         //buttonSettings.onClick.RemoveAllListeners();
         //buttonMainMenu.onClick.RemoveAllListeners();
       
@@ -73,6 +77,7 @@ public class UIPause : MonoBehaviour
         _isPause = !_isPause;
         Time.timeScale = _isPause ? 0 : 1;
         SetPanel(panelPause, _isPause);
+        GameTogglePouse?.Invoke();
         //Cursor.lockState = _isPause ? CursorLockMode.None : CursorLockMode.Locked;
         //Cursor.visible = _isPause;
     }
