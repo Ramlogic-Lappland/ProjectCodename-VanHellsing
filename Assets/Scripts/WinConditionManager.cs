@@ -7,6 +7,7 @@ public class WinConditionManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
     [SerializeField] private TextMeshProUGUI stageClearText;
     [SerializeField] private Light2D globalLight; 
+    [SerializeField] private float globalLightIntensity = 0.15f;
     private int _remainingEnemies;
     private bool _gameEnded;
     
@@ -50,7 +51,7 @@ public class WinConditionManager : MonoBehaviour
         stageClearText.gameObject.SetActive(true);
 
         WindowBehaviour[] windows = FindObjectsByType<WindowBehaviour>(FindObjectsSortMode.None);
-        globalLight.intensity = 0.07f;
+        globalLight.intensity = globalLightIntensity;
         foreach (WindowBehaviour window in windows)
         {
             window.ClearWindow();
