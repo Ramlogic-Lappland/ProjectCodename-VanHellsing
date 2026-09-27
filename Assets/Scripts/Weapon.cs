@@ -61,10 +61,12 @@ public class Weapon : MonoBehaviour
         
         _canShoot = false;
         _reloadTimer += Time.deltaTime;
-
+        uiAmmo.SetReload(_reloadTimer, data.GetReloadTime());
+        
         if (_reloadTimer >= data.GetReloadTime())
         {
             Reload();
+            uiAmmo.ResetReload();
         }
         
     }
