@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
     private float _roundsInMag;
     private bool _canShoot;
     
+    [SerializeField] private UIAmmo uiAmmo;
+    
     private void Awake()
     {
         switch (data.GetFireType())
@@ -24,6 +26,7 @@ public class Weapon : MonoBehaviour
     {
         _roundsInMag = data.GetMagazineSize();
         _canShoot = true;
+        uiAmmo.UpdateUIAmmo((int)_roundsInMag, (int)data.GetMagazineSize());
     }
 
     private void Update()
@@ -47,6 +50,7 @@ public class Weapon : MonoBehaviour
         if (_canShoot)
         {
             _fireBehaviour.Shoot(this);
+            uiAmmo.UpdateUIAmmo((int)_roundsInMag,(int)data.GetMagazineSize());
         }
     }
 
@@ -70,6 +74,7 @@ public class Weapon : MonoBehaviour
         _roundsInMag = data.GetMagazineSize();
         _reloadTimer = 0f;
         _canShoot = true;
+        uiAmmo.UpdateUIAmmo((int)_roundsInMag, (int)data.GetMagazineSize());
     }
     
     public void DecreaseRounds()
