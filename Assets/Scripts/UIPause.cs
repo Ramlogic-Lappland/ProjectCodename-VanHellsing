@@ -1,12 +1,12 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class UIPause : MonoBehaviour
 {
     [SerializeField] private Button buttonResume;
+    [SerializeField] private TMP_Text versionText;
     //[SerializeField] private Button buttonSettings;
     //[SerializeField] private Button buttonMainMenu;
 
@@ -21,6 +21,7 @@ public class UIPause : MonoBehaviour
 
     private void Awake()
     {
+        versionText.text = $"{Application.version}";
         buttonResume.onClick.AddListener(OnButtonResumeClicked);
         //buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
         //buttonMainMenu.onClick.AddListener(OnButtonMainMenuClicked);
