@@ -15,17 +15,12 @@ public class HealtBarBehaviour : MonoBehaviour
 
         slider.gameObject.SetActive(health < maxHealth);
 
-        Image fillImage = slider.fillRect.GetComponent<Image>();
-
-        if (fillImage != null)
-        {
-            fillImage.color = Color.Lerp
-            (
-                low,
-                high,
-                slider.normalizedValue
-            );
-        }
+        slider.fillRect.GetComponent<Image>().color = Color.Lerp
+        (
+            low,
+            high,
+            slider.normalizedValue
+        );
     }
 
     private void FixedUpdate()
