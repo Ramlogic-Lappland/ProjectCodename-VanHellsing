@@ -6,6 +6,7 @@ public class WinConditionManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI enemiesRemainingText;
     [SerializeField] private TextMeshProUGUI stageClearText;
+    [SerializeField] private GameObject exitPoint;
     [SerializeField] private Light2D globalLight; 
     [SerializeField] private float globalLightIntensity = 0.15f;
     private int _remainingEnemies;
@@ -49,6 +50,7 @@ public class WinConditionManager : MonoBehaviour
     {
         Debug.Log("YOU WIN!");
         stageClearText.gameObject.SetActive(true);
+        exitPoint.SetActive(true);
 
         WindowBehaviour[] windows = FindObjectsByType<WindowBehaviour>(FindObjectsSortMode.None);
         globalLight.intensity = globalLightIntensity;
