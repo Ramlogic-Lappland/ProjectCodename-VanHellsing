@@ -15,22 +15,16 @@ public class HealtBarBehaviour : MonoBehaviour
 
         slider.gameObject.SetActive(health < maxHealth);
 
-        Image fillImage = slider.fillRect.GetComponent<Image>();
-
-        if (fillImage != null)
-        {
-            fillImage.color = Color.Lerp
-            (
-                low,
-                high,
-                slider.normalizedValue
-            );
-        }
+        slider.fillRect.GetComponent<Image>().color = Color.Lerp
+        (
+            low,
+            high,
+            slider.normalizedValue
+        );
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        slider.transform.position =
-            Camera.main.WorldToScreenPoint(transform.parent.position + offSet);
+        slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offSet);
     }
 }
