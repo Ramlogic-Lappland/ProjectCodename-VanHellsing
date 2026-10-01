@@ -21,23 +21,23 @@ public class DoorHingeScript : MonoBehaviour
         {
             if (currentAngle > targetAngle + tolerance)
             {
-                motor.motorSpeed = -20f;
+                //motor.motorSpeed = -20f;
             }
             else if (currentAngle < targetAngle - tolerance)
             {
-                motor.motorSpeed = 20f;
+                //motor.motorSpeed = 20f;
             }
             else
             {
-                motor.motorSpeed = 0f;
+                //motor.motorSpeed = 0f;
             }
 
-            hingeJointReference.motor = motor;
+            //hingeJointReference.motor = motor;
         }
         else if (_isColliding)
         {
-            motor.motorSpeed = 0;
-            hingeJointReference.motor = motor;
+            //motor.motorSpeed = 0;
+            //hingeJointReference.motor = motor;
         }
 
     }
