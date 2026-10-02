@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class UIAmmo : MonoBehaviour
 {
     [SerializeField] private TMP_Text ammoText;
     [SerializeField] private Slider reloadSlider;
+    [SerializeField] private List<Image> bullets;
 
     private void Awake()
     {
@@ -14,7 +16,10 @@ public class UIAmmo : MonoBehaviour
     
     public void UpdateUIAmmo(int currentAmmo, int maxAmmo)
     {
-        ammoText.text = $"{currentAmmo} / {maxAmmo}";
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            bullets[i].gameObject.SetActive(i < currentAmmo);
+        }
     }
 
     public void SetReload(float currentTime, float totalTime)
