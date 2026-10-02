@@ -7,6 +7,7 @@ public class UIPause : MonoBehaviour
 {
     [SerializeField] private Button buttonResume;
     [SerializeField] private TMP_Text versionText;
+    [SerializeField] private Button buttonExit;
     //[SerializeField] private Button buttonSettings;
     //[SerializeField] private Button buttonMainMenu;
 
@@ -23,10 +24,11 @@ public class UIPause : MonoBehaviour
     {
         versionText.text = $"{Application.version}";
         buttonResume.onClick.AddListener(OnButtonResumeClicked);
+        buttonExit.onClick.AddListener(OnButtonExitClicked);
         //buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
         //buttonMainMenu.onClick.AddListener(OnButtonMainMenuClicked);
         //buttonSettingsBack.onClick.AddListener(OnButtonSettingsBackClicked);
-        
+
     }
 
     private void Update()
@@ -42,6 +44,7 @@ public class UIPause : MonoBehaviour
     private void OnDestroy()
     {
         buttonResume.onClick.RemoveAllListeners();
+        buttonExit.onClick.RemoveAllListeners();
         //buttonSettings.onClick.RemoveAllListeners();
         //buttonMainMenu.onClick.RemoveAllListeners();
       
@@ -50,6 +53,15 @@ public class UIPause : MonoBehaviour
     private void OnButtonResumeClicked()
     {
         TogglePause();
+    }
+
+    private void OnButtonExitClicked()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit(0);
+#endif
     }
     /*private void OnButtonSettingsClicked()
     {
