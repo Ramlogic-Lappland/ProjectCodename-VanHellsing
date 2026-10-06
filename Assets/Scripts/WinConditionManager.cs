@@ -8,7 +8,9 @@ public class WinConditionManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI stageClearText;
     [SerializeField] private GameObject exitPoint;
     [SerializeField] private Light2D globalLight; 
+    [SerializeField] private Light2D outsideLight;
     [SerializeField] private float globalLightIntensity = 0.15f;
+    public string hexColor = "#EFA35B";
     private int _remainingEnemies;
     private bool _gameEnded;
     
@@ -54,6 +56,14 @@ public class WinConditionManager : MonoBehaviour
 
         WindowBehaviour[] windows = FindObjectsByType<WindowBehaviour>(FindObjectsSortMode.None);
         globalLight.intensity = globalLightIntensity;
+        Color newColor;
+        if (ColorUtility.TryParseHtmlString(hexColor, out newColor))
+        {
+            if (outsideLight != null)
+            {
+                outsideLight.color = newColor;
+            }
+        }
         foreach (WindowBehaviour window in windows)
         {
             window.ClearWindow();

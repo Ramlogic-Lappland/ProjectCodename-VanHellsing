@@ -21,43 +21,41 @@ public class DoorHingeScript : MonoBehaviour
         {
             if (currentAngle > targetAngle + tolerance)
             {
-                motor.motorSpeed = -20f;
+                //motor.motorSpeed = -20f;
             }
             else if (currentAngle < targetAngle - tolerance)
             {
-                motor.motorSpeed = 20f;
+                //motor.motorSpeed = 20f;
             }
             else
             {
-                motor.motorSpeed = 0f;
+                //motor.motorSpeed = 0f;
             }
 
-            hingeJointReference.motor = motor;
+            //hingeJointReference.motor = motor;
         }
         else if (_isColliding)
         {
-            motor.motorSpeed = 0;
-            hingeJointReference.motor = motor;
+            //motor.motorSpeed = 0;
+            //hingeJointReference.motor = motor;
         }
 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger Enter: "  + other.gameObject.name);
+     
         if ((1<<(other.gameObject.layer) & mask.value) != 0 )
         {
-            Debug.Log("is colliding");
             _isColliding = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Trigger exit");
+       
         if ((1<<(other.gameObject.layer) & mask.value) != 0 )
         {
-            Debug.Log("is not colliding");
             _isColliding = false;
         }
     }

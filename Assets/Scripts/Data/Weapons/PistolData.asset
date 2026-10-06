@@ -19,4 +19,4 @@ MonoBehaviour:
   projectileSpeed: 30
   fireType: 0
   magazineSize: 6
-  reloadTime: 3
+  reloadTime: 1.5
