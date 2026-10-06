@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cd70bffc9a14b8d4cb559b599a1ef92b
+guid: 2cd21eead356a0a40b91416848c304fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1184024644551250328
-    second: NavMeshSurfaceGears Icon_0
+      213: -5243089417751296720
+    second: NavMeshLink Icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NavMeshSurfaceGears Icon_0
+      name: NavMeshLink Icon_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 8
-        width: 252
-        height: 244
+        x: 38
+        y: 26
+        width: 182
+        height: 219
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89119c714208e6010800000000000000
-      internalID: 1184024644551250328
+      spriteID: 035035124fdcc37b0800000000000000
+      internalID: -5243089417751296720
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      NavMeshSurfaceGears Icon_0: 1184024644551250328
+      NavMeshLink Icon_0: -5243089417751296720
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
