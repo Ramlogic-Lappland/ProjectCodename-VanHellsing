@@ -11,8 +11,9 @@ public class BasicMeleeEnemyWithKnockBack : MonoBehaviour, IEnemyAttack
     [SerializeField] private float knockbackForce = 5f;
 
     private float _cooldownTimer;
+
     private PlayerHealth _playerHealth;
-    private Rigidbody2D _playerRb;
+    private PlayerController _playerController;
 
     public float AttackRange => attackRange;
 
@@ -31,7 +32,8 @@ public class BasicMeleeEnemyWithKnockBack : MonoBehaviour, IEnemyAttack
             return false;
         }
 
-        float distance = Vector2.Distance(
+        float distance = Vector2.Distance
+        (
             transform.position,
             player.position
         );
@@ -51,38 +53,47 @@ public class BasicMeleeEnemyWithKnockBack : MonoBehaviour, IEnemyAttack
             return;
         }
 
-        // Cache PlayerHealth and Rigidbody2D.
+        // Cache PlayerHealth.
         if (_playerHealth == null)
         {
-            _playerHealth = player.GetComponent<PlayerHealth>();
+            _playerHealth = player.GetComponentInParent<PlayerHealth>();
         }
 
-        if (_playerRb == null)
+        // Cache PlayerController.
+        if (_playerController == null)
         {
-            _playerRb = player.GetComponent<Rigidbody2D>();
+            _playerController = player.GetComponentInParent<PlayerController>();
         }
 
         if (_playerHealth == null)
         {
             Debug.LogWarning("Player does not have PlayerHealth.");
+
             return;
         }
 
-        if (_playerRb == null)
+        if (_playerController == null)
         {
-            Debug.LogWarning("Player does not have Rigidbody2D.");
+            Debug.LogWarning("Player does not have PlayerController.");
+
             return;
         }
 
         _cooldownTimer = attackCooldown;
 
-        Debug.Log("Melee attack!");
-        
+        Debug.Log($"Melee attack! Damage: {damage}");
+
+        // Deal damag
         _playerHealth.TakeDamage(damage);
 
-        // Push player away from enemy.
+        // Calculate direction from enemy to player
         Vector2 knockbackDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
 
-        _playerRb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+        // Apply knockback
+        _playerController.ApplyKnockback
+        (
+            knockbackDirection,
+            knockbackForce
+        );
     }
 }
