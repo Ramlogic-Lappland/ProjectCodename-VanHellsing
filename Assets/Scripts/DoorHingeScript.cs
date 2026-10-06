@@ -44,20 +44,18 @@ public class DoorHingeScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger Enter: "  + other.gameObject.name);
+     
         if ((1<<(other.gameObject.layer) & mask.value) != 0 )
         {
-            Debug.Log("is colliding");
             _isColliding = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Trigger exit");
+       
         if ((1<<(other.gameObject.layer) & mask.value) != 0 )
         {
-            Debug.Log("is not colliding");
             _isColliding = false;
         }
     }
