@@ -91,6 +91,7 @@ public class UIPause : MonoBehaviour
         Time.timeScale = _isPause ? 0 : 1;
         SetPanel(panelPause, _isPause);
         GameTogglePouse?.Invoke();
+        EventManager.Instance.ChangeCursor();
         //Cursor.lockState = _isPause ? CursorLockMode.None : CursorLockMode.Locked;
         //Cursor.visible = _isPause;
     }
