@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour
     private float _roundsInMag;
     private bool _canShoot;
     
-    [SerializeField] private UIAmmo uiAmmo;
     
     private void Awake()
     {
@@ -26,7 +25,7 @@ public class Weapon : MonoBehaviour
     {
         _roundsInMag = data.GetMagazineSize();
         _canShoot = true;
-        uiAmmo.UpdateUIAmmo((int)_roundsInMag, (int)data.GetMagazineSize());
+        EventManager.Instance.RestartUIAmmo();
     }
 
     private void Update()
@@ -50,7 +49,6 @@ public class Weapon : MonoBehaviour
         if (_canShoot)
         {
             _fireBehaviour.Shoot(this);
-            uiAmmo.UpdateUIAmmo((int)_roundsInMag,(int)data.GetMagazineSize());
         }
     }
 
@@ -61,12 +59,12 @@ public class Weapon : MonoBehaviour
         
         _canShoot = false;
         _reloadTimer += Time.deltaTime;
-        uiAmmo.SetReload(_reloadTimer, data.GetReloadTime());
+        EventManager.Instance.StartReload(_reloadTimer, data.GetReloadTime());
         
         if (_reloadTimer >= data.GetReloadTime())
         {
             Reload();
-            uiAmmo.ResetReload();
+            EventManager.Instance.ResetReload();
         }
         
     }
@@ -76,11 +74,16 @@ public class Weapon : MonoBehaviour
         _roundsInMag = data.GetMagazineSize();
         _reloadTimer = 0f;
         _canShoot = true;
-        uiAmmo.UpdateUIAmmo((int)_roundsInMag, (int)data.GetMagazineSize());
+        EventManager.Instance.RestartUIAmmo();
     }
     
     public void DecreaseRounds()
     {
         _roundsInMag--;
+    }
+
+    public int GetRoundsInMag()
+    {
+        return (int)_roundsInMag;
     }
 }
