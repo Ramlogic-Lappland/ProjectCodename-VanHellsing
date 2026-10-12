@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class UIPause : MonoBehaviour
 {
     [SerializeField] private Button buttonResume;
     [SerializeField] private TMP_Text versionText;
+    [SerializeField] private Button buttonRestart;
     [SerializeField] private Button buttonExit;
+    
     //[SerializeField] private Button buttonSettings;
     //[SerializeField] private Button buttonMainMenu;
 
@@ -25,6 +29,7 @@ public class UIPause : MonoBehaviour
         versionText.text = $"{Application.version}";
         buttonResume.onClick.AddListener(OnButtonResumeClicked);
         buttonExit.onClick.AddListener(OnButtonExitClicked);
+        buttonRestart.onClick.AddListener(RestartScene);
         //buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
         //buttonMainMenu.onClick.AddListener(OnButtonMainMenuClicked);
         //buttonSettingsBack.onClick.AddListener(OnButtonSettingsBackClicked);
@@ -94,6 +99,12 @@ public class UIPause : MonoBehaviour
         EventManager.Instance.ChangeCursor();
         //Cursor.lockState = _isPause ? CursorLockMode.None : CursorLockMode.Locked;
         //Cursor.visible = _isPause;
+    }
+
+    private void RestartScene()
+    {
+        TogglePause();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
