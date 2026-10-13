@@ -63,6 +63,23 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        if (player == null)
+        {
+            GameObject playerObject = GameObject.Find("PlayerVIsual");
+
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+            else
+            {
+                Debug.LogError(
+                    "Could not find a GameObject named PlayerVIsual!",
+                    this
+                );
+            }
+        }
+        
         _rb = GetComponent<Rigidbody2D>();
         _agent = GetComponent<NavMeshAgent>();
 
