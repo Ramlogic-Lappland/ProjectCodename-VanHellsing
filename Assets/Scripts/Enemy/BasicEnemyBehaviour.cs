@@ -71,7 +71,8 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         _agent.speed = movementSpeed;
         _agent.stoppingDistance = searchArrivalDistance;
-
+        _facingDirection = transform.right;
+        
         _currentState = EnemyState.Idle;
         hitPoints = maxHitPoints;
 
@@ -94,11 +95,13 @@ public class BasicEnemyBehaviour : MonoBehaviour
         }
     }
 
-    private void Update() // ONLY FOR TEST
+    private void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))// ONLY FOR TEST
         {
-            TakeDamage(_dmg);
+            Vector2 sourcePosition = player != null ? (Vector2)player.position : (Vector2)transform.position - _facingDirection;
+
+            TakeDamage(_dmg, sourcePosition);
         }
     }
     
@@ -134,8 +137,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     {
         if (CanSeePlayer())
         {
-            _lastKnownPosition = player.position;
-            _currentState = EnemyState.Chase;
+            DetectPlayer();
         }
     }
 
@@ -344,6 +346,16 @@ public class BasicEnemyBehaviour : MonoBehaviour
     private void DetectPlayer()
     {
         _lastKnownPosition = player.position;
+        
+        Vector2 toPlayer = (Vector2)player.position - (Vector2)transform.position; //TURN TO PLAYER ON DETECTION
+
+        if (toPlayer.sqrMagnitude > 0.001f)
+        {
+            _facingDirection = toPlayer.normalized;
+        }
+        
+        _agent.isStopped = false;
+        _agent.SetDestination(player.position);
 
         _currentState = EnemyState.Chase;
     }
@@ -439,7 +451,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
         _attack.Attack(player);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector2 sourcePosition)
     {
         hitPoints -= damage;
 
@@ -447,8 +459,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         if (hitPoints <= 0)
         {
-            WinConditionManager winManager =
-                FindFirstObjectByType<WinConditionManager>();
+            WinConditionManager winManager = FindFirstObjectByType<WinConditionManager>();
 
             if (winManager != null)
             {
@@ -456,9 +467,35 @@ public class BasicEnemyBehaviour : MonoBehaviour
             }
 
             Destroy(gameObject);
+            return;
         }
-    }
 
+        ReactToHit(sourcePosition);
+    }
+    
+    private void ReactToHit(Vector2 sourcePosition)
+    {
+        _lastKnownPosition = sourcePosition;
+
+        Vector2 direction = (sourcePosition - (Vector2)transform.position).normalized;
+
+        if (direction.sqrMagnitude > 0.01f)
+        {
+            _facingDirection = direction;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler
+            (
+                0f,
+                0f,
+                angle
+            );
+        }
+
+        StartSearch();
+    }
+    
     #region GIZMOS =========================================================================================
     private void OnDrawGizmos()
     {
