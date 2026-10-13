@@ -71,7 +71,8 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         _agent.speed = movementSpeed;
         _agent.stoppingDistance = searchArrivalDistance;
-
+        _facingDirection = transform.right;
+        
         _currentState = EnemyState.Idle;
         hitPoints = maxHitPoints;
 
@@ -136,8 +137,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     {
         if (CanSeePlayer())
         {
-            _lastKnownPosition = player.position;
-            _currentState = EnemyState.Chase;
+            DetectPlayer();
         }
     }
 
@@ -346,6 +346,16 @@ public class BasicEnemyBehaviour : MonoBehaviour
     private void DetectPlayer()
     {
         _lastKnownPosition = player.position;
+        
+        Vector2 toPlayer = (Vector2)player.position - (Vector2)transform.position; //TURN TO PLAYER ON DETECTION
+
+        if (toPlayer.sqrMagnitude > 0.001f)
+        {
+            _facingDirection = toPlayer.normalized;
+        }
+        
+        _agent.isStopped = false;
+        _agent.SetDestination(player.position);
 
         _currentState = EnemyState.Chase;
     }
