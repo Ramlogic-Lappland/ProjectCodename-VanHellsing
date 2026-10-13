@@ -23,5 +23,6 @@ public class AutomaticFire : FireBehaviour
         bullet.SetSpeed(data.GetProjectileSpeed());
         SetCooldown(data.FireRate());
         weapon.DecreaseRounds();
+        EventManager.Instance.UpdateUIAmmo(weapon.GetRoundsInMag(),(int)data.GetMagazineSize(), data.FireRate());
     }
 }

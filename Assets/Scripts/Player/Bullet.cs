@@ -9,10 +9,15 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D _rb;
     private float _speed;
+    private Vector2 _sourcePosition;
+
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        // Check where bullet was fired
+        _sourcePosition = transform.position;
     }
 
     private void Start()
@@ -42,9 +47,10 @@ public class Bullet : MonoBehaviour
 
         if (enemy != null)
         {
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(damage, _sourcePosition);
         }
 
         Destroy(gameObject);
     }
+    
 }
