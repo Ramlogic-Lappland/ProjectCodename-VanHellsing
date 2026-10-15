@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{82D7ADE6-F8D1-4AC0-A8C0-CDF4DB1DB335}" SchemaVersion="133">
+	<Containers>
+		<WorkUnit Name="Default Work Unit" ID="{82D7ADE6-F8D1-4AC0-A8C0-CDF4DB1DB335}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Button" ID="{9341B55F-5174-4848-8643-BF0146A50010}" ShortID="313854920">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{4D728955-958C-4B5A-90A1-2DBDEB0EB7DA}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Main Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{E636EE33-691F-4FD0-96E9-388E6E0470F6}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Button" ID="{1677EF02-ECD6-476D-9474-451E530D6C88}">
+							<Language>SFX</Language>
+							<AudioFile>Button.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="331093099"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Button" ID="{1677EF02-ECD6-476D-9474-451E530D6C88}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</Containers>
+</WwiseDocument>
