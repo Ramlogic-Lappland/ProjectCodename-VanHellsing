@@ -1,48 +1,48 @@
-name: Actions 😎
+name: Build & Upload Artifact
 
-on: [push, pull_request]
+on:
+  push:
+    tags: 
+      - 'Build_*.*.*'
+
+env:
+  buildName: My-Game
 
 jobs:
-  build:
-    name: Build my project ✨
-    runs-on: ubuntu-latest
+  buildAndUploadArtifact:
+    name: Build & upload artifact
+    runs-on: windows-latest
     steps:
-      # Checkout
-      - name: Checkout repository
+
+      # Checkouts the repository code
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          lfs: true
+          fetch-depth: 0
 
-      # Cache
-      - uses: actions/cache@v3
+      # Caches library folder for faster build times
+      - name: Cache Library
+        uses: actions/cache@v4
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
 
-      # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      # Build
-      - name: Build project
+      # Builds the project for Windows Standalone
+      - name: Build
         uses: game-ci/unity-builder@v4
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform: WebGL
-
-      # Output
-      - uses: actions/upload-artifact@v4
+          buildName: ${{ env.buildName }}
+          targetPlatform: StandaloneWindows64
+          versioning: None 
+      
+      # Uploads the build output as a GitHub artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: Build
+          name: ${{ env.buildName }}
           path: build
