@@ -160,7 +160,7 @@ public static class VersionUpdater
         string args = "/C " +
                       $"git add \"ProjectSettings/ProjectSettings.asset\"&&" +
                       $"git commit -m \"Update version to {newVersion} (Android {androidCode} and iOS {iOSBuildNumber})\"&&" +
-                      $"git tag {newVersion}&&" +
+                      $"git tag \"Build_{newVersion}\"&&" +
                       $"git push&&" +
                       $"git push --tags";
 
