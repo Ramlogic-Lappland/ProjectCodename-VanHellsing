@@ -64,7 +64,7 @@ public class UIAmmo : MonoBehaviour
             bullets[i].gameObject.SetActive(true);
         }
         
-        cylinder.transform.Rotate(0, 0, 0);
+        cylinder.transform.localRotation = Quaternion.identity;
     }
     
     private IEnumerator RotateCylinder(float duration)

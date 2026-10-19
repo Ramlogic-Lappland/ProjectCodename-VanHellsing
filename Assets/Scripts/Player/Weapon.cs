@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     private float _reloadTimer;
     private float _roundsInMag;
     private bool _canShoot;
-    
+    private bool _isReloading;
     
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
     {
         _roundsInMag = data.GetMagazineSize();
         _canShoot = true;
+        _isReloading = false;
         EventManager.Instance.RestartUIAmmo();
     }
 
@@ -50,11 +51,25 @@ public class Weapon : MonoBehaviour
         {
             _fireBehaviour.Shoot(this);
         }
+
+        if ((int)_roundsInMag == 0)
+        {
+            _isReloading = true;
+        }
     }
 
     private void HandleReload()
     {
-        if (_roundsInMag > 0)
+        if ((int)_roundsInMag >= (int)data.GetMagazineSize())
+        {
+            _isReloading = false;
+            _reloadTimer = 0f;
+            EventManager.Instance.ResetReload();
+            return;
+        }
+            
+            
+        if (!_isReloading)
             return;
         
         _canShoot = false;
@@ -69,11 +84,21 @@ public class Weapon : MonoBehaviour
         
     }
 
+    public void StartReloading()
+    {
+        if (_isReloading || _roundsInMag >= data.GetMagazineSize())
+            return;
+
+        _reloadTimer = 0f;
+        _isReloading = true;
+    }
+
     private void Reload()
     {
         _roundsInMag = data.GetMagazineSize();
         _reloadTimer = 0f;
         _canShoot = true;
+        _isReloading = false;
         EventManager.Instance.RestartUIAmmo();
     }
     
@@ -86,4 +111,5 @@ public class Weapon : MonoBehaviour
     {
         return (int)_roundsInMag;
     }
+    
 }

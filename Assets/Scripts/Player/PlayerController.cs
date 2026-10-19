@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         HandleInput();
         HandleRotation();
         HandleShooting();
+        HandleReloading();
     }
 
     private void FixedUpdate()
@@ -124,6 +125,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             weapon.Shoot();
+        }
+    }
+
+    private void HandleReloading()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            weapon.StartReloading();
         }
     }
 
