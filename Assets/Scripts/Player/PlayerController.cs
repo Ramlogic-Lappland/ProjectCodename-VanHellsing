@@ -28,7 +28,10 @@ public class PlayerController : MonoBehaviour
 
         _gamePasued = false;
 
-        uiPause.GameTogglePouse += toggleFreezeInput;
+        if (uiPause != null)
+        {
+            uiPause.GameTogglePouse += toggleFreezeInput;
+        }
     }
 
     private void Update()
@@ -60,7 +63,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        uiPause.GameTogglePouse -= toggleFreezeInput;
+        if (uiPause != null)
+        {
+            uiPause.GameTogglePouse -= toggleFreezeInput;
+        }
     }
 
     private void HandleInput()

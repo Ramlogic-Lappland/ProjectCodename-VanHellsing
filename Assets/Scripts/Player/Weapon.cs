@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
         _roundsInMag = data.GetMagazineSize();
         _canShoot = true;
         _isReloading = false;
-        EventManager.Instance.RestartUIAmmo();
+        EventManager.Instance?.RestartUIAmmo();
     }
 
     private void Update()
@@ -64,7 +64,7 @@ public class Weapon : MonoBehaviour
         {
             _isReloading = false;
             _reloadTimer = 0f;
-            EventManager.Instance.ResetReload();
+            EventManager.Instance?.ResetReload();
             return;
         }
             
@@ -74,12 +74,12 @@ public class Weapon : MonoBehaviour
         
         _canShoot = false;
         _reloadTimer += Time.deltaTime;
-        EventManager.Instance.StartReload(_reloadTimer, data.GetReloadTime());
+        EventManager.Instance?.StartReload(_reloadTimer, data.GetReloadTime());
         
         if (_reloadTimer >= data.GetReloadTime())
         {
             Reload();
-            EventManager.Instance.ResetReload();
+            EventManager.Instance?.ResetReload();
         }
         
     }
@@ -99,7 +99,7 @@ public class Weapon : MonoBehaviour
         _reloadTimer = 0f;
         _canShoot = true;
         _isReloading = false;
-        EventManager.Instance.RestartUIAmmo();
+        EventManager.Instance?.RestartUIAmmo();
     }
     
     public void DecreaseRounds()
