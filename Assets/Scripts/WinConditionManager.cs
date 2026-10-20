@@ -10,6 +10,7 @@ public class WinConditionManager : MonoBehaviour
     [SerializeField] private Light2D globalLight; 
     [SerializeField] private Light2D outsideLight;
     [SerializeField] private float globalLightIntensity = 0.15f;
+    [SerializeField] private ExitArrow exitArrow;
     public string hexColor = "#EFA35B";
     private int _remainingEnemies;
     private bool _gameEnded;
@@ -67,6 +68,10 @@ public class WinConditionManager : MonoBehaviour
         foreach (WindowBehaviour window in windows)
         {
             window.ClearWindow();
+        }
+        if (exitArrow != null)
+        {
+            exitArrow.ActivateArrow();
         }
         
         // TODO: Show win screen
