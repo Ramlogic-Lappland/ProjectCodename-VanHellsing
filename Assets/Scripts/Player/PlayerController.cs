@@ -28,7 +28,10 @@ public class PlayerController : MonoBehaviour
 
         _gamePasued = false;
 
-        uiPause.GameTogglePouse += toggleFreezeInput;
+        if (uiPause != null)
+        {
+            uiPause.GameTogglePouse += toggleFreezeInput;
+        }
     }
 
     private void Update()
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
         HandleInput();
         HandleRotation();
         HandleShooting();
+        HandleReloading();
     }
 
     private void FixedUpdate()
@@ -59,7 +63,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        uiPause.GameTogglePouse -= toggleFreezeInput;
+        if (uiPause != null)
+        {
+            uiPause.GameTogglePouse -= toggleFreezeInput;
+        }
     }
 
     private void HandleInput()
@@ -124,6 +131,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             weapon.Shoot();
+        }
+    }
+
+    private void HandleReloading()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            weapon.StartReloading();
         }
     }
 
