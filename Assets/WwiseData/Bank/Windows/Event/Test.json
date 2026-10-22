@@ -1,0 +1,48 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "3157003241",
+    "Type": "Event",
+    "GUID": "{AD5DA5D4-C3B5-4C45-8465-6573597BBE3C}",
+    "Language": "SFX",
+    "Hash": "{B12B8567-7F8A-1370-67EA-CC5D6E6D4542}",
+    "ObjectPath": "Test",
+    "ShortName": "Test",
+    "Path": "Event/Test.bnk",
+    "Media": [
+     {
+      "Id": "331093099",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Loose",
+      "ShortName": "Button.wav",
+      "Path": "Media/331093099.wem",
+      "CachePath": "85/{8555CC2A-058C-CB36-7D0C-F85EE36B23EB}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "3157003241",
+      "Name": "Test",
+      "ObjectPath": "\\Events\\Default Work Unit\\Test",
+      "GUID": "{AD5DA5D4-C3B5-4C45-8465-6573597BBE3C}",
+      "DurationType": "OneShot",
+      "DurationMin": "0.4630612",
+      "DurationMax": "0.4630612",
+      "MediaRefs": [
+       {
+        "Id": "331093099"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{8E12B730-D433-2FBA-0C48-6B7064787F97}"
+ }
+}

@@ -8,6 +8,10 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private Button buttonPlay;
     [SerializeField] private Button buttonSettings;
     [SerializeField] private Button buttonExit;
+    [SerializeField] private string sceneToLoad;
+
+    private bool _isTransitioning;
+
 
     private void Awake()
     {
@@ -29,7 +33,20 @@ public class UIMainMenu : MonoBehaviour
 
     private void OnButtonPlayClicked()
     {
-        SceneManager.LoadScene("Scenes/Build_0.6.0/Scene_1");
+        if (_isTransitioning)
+        {
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(sceneToLoad))
+        {
+            Debug.LogError("No destination scene assigned!", this);
+            return;
+        }
+
+        _isTransitioning = true;
+
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     private void OnButtonSettingsClicked()

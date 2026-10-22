@@ -1,0 +1,49 @@
+name: Build & Upload Artifact
+
+on:
+  push:
+    tags: 
+      - 'Build_*.*.*'
+
+env:
+  buildName: My-Game
+
+jobs:
+  buildAndUploadArtifact:
+    name: Build & upload artifact
+    runs-on: windows-latest
+    steps:
+
+      # Checkouts the repository code
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Caches library folder for faster build times
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+
+      # Builds the project for Windows Standalone
+      - name: Build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          buildName: ${{ env.buildName }}
+          targetPlatform: StandaloneWindows64
+          targetVersion: 6000.3.11f1
+          versioning: None 
+      
+      # Uploads the build output as a GitHub artifact
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.buildName }}
+          path: build
