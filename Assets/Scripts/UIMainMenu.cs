@@ -45,7 +45,7 @@ public class UIMainMenu : MonoBehaviour
         }
 
         _isTransitioning = true;
-
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneToLoad);
     }
 
