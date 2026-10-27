@@ -13,8 +13,8 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         EventManager.Instance.OnCursorChange += ChangeCursor;
-        _cursorTexture =  cursors[0];
-        Cursor.SetCursor(cursors[0], hotSpot, CursorMode.Auto);
+        _cursorTexture =  cursors[1];
+        Cursor.SetCursor(cursors[1], hotSpot, CursorMode.Auto);
     }
 
     // Update is called once per frame
