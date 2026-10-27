@@ -45,7 +45,8 @@ public class UIMainMenu : MonoBehaviour
         }
 
         _isTransitioning = true;
-
+        Time.timeScale = 1;
+        EventManager.Instance?.ChangeCursor();
         SceneManager.LoadScene(sceneToLoad);
     }
 

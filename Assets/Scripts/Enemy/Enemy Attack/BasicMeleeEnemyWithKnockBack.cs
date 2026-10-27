@@ -16,7 +16,13 @@ public class BasicMeleeEnemyWithKnockBack : MonoBehaviour, IEnemyAttack
     private PlayerController _playerController;
 
     public float AttackRange => attackRange;
+    private Animator _animator;
 
+    private void Awake()
+    {
+        _animator = GetComponentInChildren<Animator>();
+    }
+    
     private void Update()
     {
         if (_cooldownTimer > 0f)
@@ -80,8 +86,17 @@ public class BasicMeleeEnemyWithKnockBack : MonoBehaviour, IEnemyAttack
         }
 
         _cooldownTimer = attackCooldown;
+        
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Attack");
+        }
 
-        Debug.Log($"Melee attack! Damage: {damage}");
+        Debug.Log
+        (
+            $"{name} attacked at {Time.time:F2}, " +
+            $"Damage: {damage}, Cooldown: {attackCooldown}"
+        );
 
         // Deal damag
         _playerHealth.TakeDamage(damage);

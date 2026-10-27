@@ -1,0 +1,1300 @@
+fileFormatVersion: 2
+guid: 219dc0939e0ac194bbfbdbba3e99c8e3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3870761574869191440
+    second: dhampir_spritesheet_0
+  - first:
+      213: -2536553182681282723
+    second: dhampir_spritesheet_1
+  - first:
+      213: 237244942252716664
+    second: dhampir_spritesheet_2
+  - first:
+      213: -6994664919728838857
+    second: dhampir_spritesheet_3
+  - first:
+      213: 7665675551446756988
+    second: dhampir_spritesheet_4
+  - first:
+      213: -5896700817427461894
+    second: dhampir_spritesheet_5
+  - first:
+      213: 8236673738620051676
+    second: dhampir_spritesheet_6
+  - first:
+      213: 8130084959478194151
+    second: dhampir_spritesheet_7
+  - first:
+      213: 4379483829888798814
+    second: dhampir_spritesheet_8
+  - first:
+      213: -611958627887244973
+    second: dhampir_spritesheet_9
+  - first:
+      213: 8780021672852158023
+    second: dhampir_spritesheet_10
+  - first:
+      213: 8381181188533629994
+    second: dhampir_spritesheet_11
+  - first:
+      213: 7992937635123119927
+    second: dhampir_spritesheet_12
+  - first:
+      213: 4128410088585284456
+    second: dhampir_spritesheet_13
+  - first:
+      213: 95006091918559919
+    second: dhampir_spritesheet_14
+  - first:
+      213: -4018531841358626793
+    second: dhampir_spritesheet_15
+  - first:
+      213: 4766765444269996114
+    second: dhampir_spritesheet_16
+  - first:
+      213: 2766791386758747416
+    second: dhampir_spritesheet_17
+  - first:
+      213: -84803951012299003
+    second: dhampir_spritesheet_18
+  - first:
+      213: -6786156821991945786
+    second: dhampir_spritesheet_19
+  - first:
+      213: 2107110486173180951
+    second: dhampir_spritesheet_20
+  - first:
+      213: -101871029571393775
+    second: dhampir_spritesheet_21
+  - first:
+      213: -4688005365028877520
+    second: dhampir_spritesheet_22
+  - first:
+      213: -3160669670635211315
+    second: dhampir_spritesheet_23
+  - first:
+      213: 1857418334495784085
+    second: dhampir_spritesheet_24
+  - first:
+      213: 4229961271356756320
+    second: dhampir_spritesheet_25
+  - first:
+      213: -6252580607798247538
+    second: dhampir_spritesheet_26
+  - first:
+      213: 4777806484793250666
+    second: dhampir_spritesheet_27
+  - first:
+      213: -4674659595777472641
+    second: dhampir_spritesheet_28
+  - first:
+      213: -8326956148941105425
+    second: dhampir_spritesheet_29
+  - first:
+      213: -449910881654536578
+    second: dhampir_spritesheet_30
+  - first:
+      213: -4583480002109038265
+    second: dhampir_spritesheet_31
+  - first:
+      213: 3263881419071113508
+    second: dhampir_spritesheet_32
+  - first:
+      213: -4153118306222824886
+    second: dhampir_spritesheet_33
+  - first:
+      213: -6840233675978784581
+    second: dhampir_spritesheet_34
+  - first:
+      213: 7492598252057572327
+    second: dhampir_spritesheet_35
+  - first:
+      213: -4135284918600621562
+    second: dhampir_spritesheet_36
+  - first:
+      213: -6676699264111682830
+    second: dhampir_spritesheet_37
+  - first:
+      213: 1320984641997411349
+    second: dhampir_spritesheet_38
+  - first:
+      213: -3200552451748185570
+    second: dhampir_spritesheet_39
+  - first:
+      213: -5635277470365060874
+    second: dhampir_spritesheet_40
+  - first:
+      213: 5613575912520126807
+    second: dhampir_spritesheet_41
+  - first:
+      213: 6183446688008260919
+    second: dhampir_spritesheet_42
+  - first:
+      213: -8297181577652858702
+    second: dhampir_spritesheet_43
+  - first:
+      213: 9027233248545292306
+    second: dhampir_spritesheet_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 40
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dhampir_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1604
+        width: 360
+        height: 518
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f4b0b71bda484ac0800000000000000
+      internalID: -3870761574869191440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1602
+        width: 368
+        height: 518
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d574560d15a5cccd0800000000000000
+      internalID: -2536553182681282723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 1581
+        width: 408
+        height: 526
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8723bbb940dda4300800000000000000
+      internalID: 237244942252716664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 1819
+        width: 171
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7372da89055fdee90800000000000000
+      internalID: -6994664919728838857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 1666
+        y: 1828
+        width: 165
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e616fac43f16a60800000000000000
+      internalID: 7665675551446756988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 1832
+        width: 195
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af80b7e39d5ba2ea0800000000000000
+      internalID: -5896700817427461894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 2487
+        y: 1828
+        width: 180
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0ac31202b8e4270800000000000000
+      internalID: 8236673738620051676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 2851
+        y: 1819
+        width: 142
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ef9173123dd3d070800000000000000
+      internalID: 8130084959478194151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 3310
+        y: 1850
+        width: 137
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50d61cf65d07cc30800000000000000
+      internalID: 4379483829888798814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 3643
+        y: 1847
+        width: 165
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3599b87ced2e187f0800000000000000
+      internalID: -611958627887244973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 4065
+        y: 1830
+        width: 228
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74675926137e8d970800000000000000
+      internalID: 8780021672852158023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 4489
+        y: 1847
+        width: 165
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a24bbb4b2efef4470800000000000000
+      internalID: 8381181188533629994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 4834
+        y: 1850
+        width: 137
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7374d554e6e9cee60800000000000000
+      internalID: 7992937635123119927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 1718
+        width: 136
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86bc3413a1f0b4930800000000000000
+      internalID: 4128410088585284456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 1825
+        y: 1717
+        width: 165
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faacd488987815100800000000000000
+      internalID: 95006091918559919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 2237
+        y: 1722
+        width: 228
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7100935d49e4b38c0800000000000000
+      internalID: -4018531841358626793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 2661
+        y: 1717
+        width: 165
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 258f1598ae3f62240800000000000000
+      internalID: 4766765444269996114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 2994
+        y: 1718
+        width: 149
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8159d5f6b1e956620800000000000000
+      internalID: 2766791386758747416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 3168
+        y: 1718
+        width: 141
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50fbc508147b2def0800000000000000
+      internalID: -84803951012299003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 3479
+        y: 1717
+        width: 169
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c98313335ab2d1a0800000000000000
+      internalID: -6786156821991945786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 3845
+        y: 1722
+        width: 196
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7146adeb2d5fd3d10800000000000000
+      internalID: 2107110486173180951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 4327
+        y: 1717
+        width: 168
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1176e7d96d4169ef0800000000000000
+      internalID: -101871029571393775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 4690
+        y: 1718
+        width: 142
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03b045865fbd0feb0800000000000000
+      internalID: -4688005365028877520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 946
+        width: 443
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc5ff653eab0324d0800000000000000
+      internalID: -3160669670635211315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 959
+        width: 390
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59c3bea5220e6c910800000000000000
+      internalID: 1857418334495784085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 1012
+        width: 369
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06111e07d57d3ba30800000000000000
+      internalID: 4229961271356756320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 1022
+        width: 430
+        height: 489
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f70b6901f5a39a0800000000000000
+      internalID: -6252580607798247538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 1724
+        y: 1012
+        width: 369
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a63d8ab1fad2e4240800000000000000
+      internalID: 4777806484793250666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 2091
+        y: 959
+        width: 390
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7700d37dd5402fb0800000000000000
+      internalID: -4674659595777472641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 2479
+        y: 946
+        width: 443
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe65c1a2085b07c80800000000000000
+      internalID: -8326956148941105425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 2920
+        y: 959
+        width: 389
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e760666df6891c9f0800000000000000
+      internalID: -449910881654536578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 3307
+        y: 1012
+        width: 370
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7412f2fe8353460c0800000000000000
+      internalID: -4583480002109038265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 3675
+        y: 1022
+        width: 430
+        height: 489
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4294bbc9bd2ab4d20800000000000000
+      internalID: 3263881419071113508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 4103
+        y: 1012
+        width: 369
+        height: 495
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42aa6797e82d56c0800000000000000
+      internalID: -4153118306222824886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 4470
+        y: 959
+        width: 390
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb0ce9a76bb9211a0800000000000000
+      internalID: -6840233675978784581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 280
+        width: 313
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e3ba9aa96e0bf760800000000000000
+      internalID: 7492598252057572327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 238
+        width: 299
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 602a7c5b6448c96c0800000000000000
+      internalID: -4135284918600621562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 141
+        width: 296
+        height: 726
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fad28ad4699753a0800000000000000
+      internalID: -6676699264111682830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 98
+        width: 267
+        height: 799
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51490047884155210800000000000000
+      internalID: 1320984641997411349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 82
+        width: 348
+        height: 839
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1a3b8c908a5593d0800000000000000
+      internalID: -3200552451748185570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 109
+        width: 307
+        height: 784
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0f0286ff87bc1b0800000000000000
+      internalID: -5635277470365060874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 2135
+        y: 238
+        width: 298
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7519379ec8d67ed40800000000000000
+      internalID: 5613575912520126807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 2455
+        y: 273
+        width: 312
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d4c4e500400d550800000000000000
+      internalID: 6183446688008260919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 2896
+        y: 265
+        width: 1122
+        height: 429
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b01613c05d7adc80800000000000000
+      internalID: -8297181577652858702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dhampir_spritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 3948
+        y: 105
+        width: 932
+        height: 589
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 210432cafcc274d70800000000000000
+      internalID: 9027233248545292306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dhampir_spritesheet_0: -3870761574869191440
+      dhampir_spritesheet_1: -2536553182681282723
+      dhampir_spritesheet_10: 8780021672852158023
+      dhampir_spritesheet_11: 8381181188533629994
+      dhampir_spritesheet_12: 7992937635123119927
+      dhampir_spritesheet_13: 4128410088585284456
+      dhampir_spritesheet_14: 95006091918559919
+      dhampir_spritesheet_15: -4018531841358626793
+      dhampir_spritesheet_16: 4766765444269996114
+      dhampir_spritesheet_17: 2766791386758747416
+      dhampir_spritesheet_18: -84803951012299003
+      dhampir_spritesheet_19: -6786156821991945786
+      dhampir_spritesheet_2: 237244942252716664
+      dhampir_spritesheet_20: 2107110486173180951
+      dhampir_spritesheet_21: -101871029571393775
+      dhampir_spritesheet_22: -4688005365028877520
+      dhampir_spritesheet_23: -3160669670635211315
+      dhampir_spritesheet_24: 1857418334495784085
+      dhampir_spritesheet_25: 4229961271356756320
+      dhampir_spritesheet_26: -6252580607798247538
+      dhampir_spritesheet_27: 4777806484793250666
+      dhampir_spritesheet_28: -4674659595777472641
+      dhampir_spritesheet_29: -8326956148941105425
+      dhampir_spritesheet_3: -6994664919728838857
+      dhampir_spritesheet_30: -449910881654536578
+      dhampir_spritesheet_31: -4583480002109038265
+      dhampir_spritesheet_32: 3263881419071113508
+      dhampir_spritesheet_33: -4153118306222824886
+      dhampir_spritesheet_34: -6840233675978784581
+      dhampir_spritesheet_35: 7492598252057572327
+      dhampir_spritesheet_36: -4135284918600621562
+      dhampir_spritesheet_37: -6676699264111682830
+      dhampir_spritesheet_38: 1320984641997411349
+      dhampir_spritesheet_39: -3200552451748185570
+      dhampir_spritesheet_4: 7665675551446756988
+      dhampir_spritesheet_40: -5635277470365060874
+      dhampir_spritesheet_41: 5613575912520126807
+      dhampir_spritesheet_42: 6183446688008260919
+      dhampir_spritesheet_43: -8297181577652858702
+      dhampir_spritesheet_44: 9027233248545292306
+      dhampir_spritesheet_5: -5896700817427461894
+      dhampir_spritesheet_6: 8236673738620051676
+      dhampir_spritesheet_7: 8130084959478194151
+      dhampir_spritesheet_8: 4379483829888798814
+      dhampir_spritesheet_9: -611958627887244973
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

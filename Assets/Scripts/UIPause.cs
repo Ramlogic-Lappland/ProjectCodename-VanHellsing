@@ -10,10 +10,9 @@ public class UIPause : MonoBehaviour
     [SerializeField] private Button buttonResume;
     [SerializeField] private TMP_Text versionText;
     [SerializeField] private Button buttonRestart;
-    [SerializeField] private Button buttonExit;
+    [SerializeField] private Button buttonMainMenu;
     
     //[SerializeField] private Button buttonSettings;
-    //[SerializeField] private Button buttonMainMenu;
 
     //[SerializeField] private Button buttonSettingsBack;
 
@@ -28,10 +27,9 @@ public class UIPause : MonoBehaviour
     {
         versionText.text = $"{Application.version}";
         buttonResume.onClick.AddListener(OnButtonResumeClicked);
-        buttonExit.onClick.AddListener(OnButtonExitClicked);
+        buttonMainMenu.onClick.AddListener(OnButtonExitClicked);
         buttonRestart.onClick.AddListener(RestartScene);
         //buttonSettings.onClick.AddListener(OnButtonSettingsClicked);
-        //buttonMainMenu.onClick.AddListener(OnButtonMainMenuClicked);
         //buttonSettingsBack.onClick.AddListener(OnButtonSettingsBackClicked);
 
     }
@@ -49,7 +47,7 @@ public class UIPause : MonoBehaviour
     private void OnDestroy()
     {
         buttonResume.onClick.RemoveAllListeners();
-        buttonExit.onClick.RemoveAllListeners();
+        buttonMainMenu.onClick.RemoveAllListeners();
         //buttonSettings.onClick.RemoveAllListeners();
         //buttonMainMenu.onClick.RemoveAllListeners();
       
@@ -62,11 +60,7 @@ public class UIPause : MonoBehaviour
 
     private void OnButtonExitClicked()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-         Application.Quit(0);
-#endif
+        SceneManager.LoadScene("Scenes/Build_0.7.0/MainMenu");
     }
     /*private void OnButtonSettingsClicked()
     {
