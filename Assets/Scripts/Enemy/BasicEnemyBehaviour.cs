@@ -37,6 +37,8 @@ public class BasicEnemyBehaviour : MonoBehaviour
     [SerializeField] private int searchPointCount = 3;
     [SerializeField] private float searchArrivalDistance = 0.2f;
     [SerializeField] private float searchWaitTime = 0.5f;
+    
+    
     private Vector2 _lastKnownPosition;
     private Vector2[] _searchPoints;
     private int _currentSearchIndex;
@@ -47,7 +49,8 @@ public class BasicEnemyBehaviour : MonoBehaviour
     [Header("Damage Attributes")]
     [SerializeField] private MonoBehaviour attackBehaviour;
     private IEnemyAttack _attack;
-    
+    private Animator _animator;
+
     private enum EnemyState
     {
         Idle,
@@ -63,6 +66,8 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        _animator = GetComponentInChildren<Animator>();
+        
         if (player == null)
         {
             GameObject playerObject = GameObject.Find("PlayerVIsual");
@@ -422,19 +427,24 @@ public class BasicEnemyBehaviour : MonoBehaviour
     private void UpdateFacingDirection()
     {
         Vector2 velocity = _agent.velocity;
-
-        if (velocity.sqrMagnitude > 0.01f)
+        
+        bool isWalking = velocity.sqrMagnitude > 0.01f;
+        
+        if (_animator != null)
+        {
+            _animator.SetBool("IsWalking", isWalking);
+        }
+        
+        if (isWalking)
         {
             _facingDirection = velocity.normalized;
 
-            float angle = Mathf.Atan2
-            (
+            float angle = Mathf.Atan2(
                 _facingDirection.y,
                 _facingDirection.x
             ) * Mathf.Rad2Deg;
 
-            transform.rotation = Quaternion.Euler
-            (
+            transform.rotation = Quaternion.Euler(
                 0f,
                 0f,
                 angle
