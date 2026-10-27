@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Animator animator;
+
     [Header("Movement")]
     [SerializeField] private float speed = 7.0f;
 
@@ -76,6 +79,15 @@ public class PlayerController : MonoBehaviour
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
         ).normalized;
+        if (_movementInput != Vector2.zero)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+        
     }
 
     private void HandleMovement()
