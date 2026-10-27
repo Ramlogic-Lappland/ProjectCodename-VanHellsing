@@ -8,6 +8,8 @@ public class BasicEnemyBehaviour : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform player;
+    [Header("Death")]
+    [SerializeField] private GameObject deadEnemyPrefab ;
     [Header("Vision Layer items will block vision (must add player to it too)")]
     [SerializeField] private LayerMask visionLayer;
     [SerializeField] private HealtBarBehaviour healtBar;
@@ -486,6 +488,18 @@ public class BasicEnemyBehaviour : MonoBehaviour
 
         if (hitPoints <= 0)
         {
+          
+            if (deadEnemyPrefab != null) // sprite of dead enemy
+            {
+                Instantiate
+                (
+                    deadEnemyPrefab,
+                    transform.position,
+                    transform.rotation
+                );
+            }
+
+       
             WinConditionManager winManager = FindFirstObjectByType<WinConditionManager>();
 
             if (winManager != null)
@@ -493,6 +507,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
                 winManager.EnemyDefeated();
             }
 
+            // Destroy the living enemy.
             Destroy(gameObject);
             return;
         }
