@@ -60,7 +60,7 @@ public class UIPause : MonoBehaviour
 
     private void OnButtonExitClicked()
     {
-        SceneManager.LoadScene("Scenes/Build_0.7.0/MainMenu");
+        SceneManager.LoadScene("Scenes/Build_0.8.0/MainMenu");
     }
     /*private void OnButtonSettingsClicked()
     {
