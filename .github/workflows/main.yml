@@ -38,7 +38,7 @@ jobs:
         with:
           buildName: ${{ env.buildName }}
           targetPlatform: StandaloneWindows64
-          targetVersion: 6000.3.11f1
+          unityVersion: 6000.3.11f1
           versioning: None 
       
       # Uploads the build output as a GitHub artifact
