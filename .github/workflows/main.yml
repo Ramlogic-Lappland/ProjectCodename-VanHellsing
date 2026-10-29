@@ -3,7 +3,7 @@ name: Build & Upload Artifact
 on:
   push:
     tags: 
-      - 'Build_*.*.*'
+      - '*.*.*'
 
 env:
   buildName: My-Game
