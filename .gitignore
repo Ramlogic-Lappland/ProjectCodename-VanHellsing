@@ -145,3 +145,12 @@ WwiseUnityIntegration_*_Src.zip
 # Carpeta plugins:
 
 /[Aa]ssets/Wwise/API/Runtime/Plugins.meta
+
+# Wwise - generated / local
+GeneratedSoundBanks/
+*.cache/
+.cache/
+*.wsettings
+*.prof
+logs/
+profiling/
